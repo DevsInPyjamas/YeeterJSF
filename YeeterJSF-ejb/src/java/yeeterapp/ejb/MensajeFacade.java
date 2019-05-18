@@ -35,51 +35,34 @@ public class MensajeFacade extends AbstractFacade<Mensaje> {
     public List<Mensaje> queryByID (Integer id) {
        Query q = this.em.createNamedQuery("Mensaje.findById");
        q.setParameter("id", id);
-       try {
-           return q.getResultList();
-       } catch(NoResultException e) {
-           return null;
-       }
+        return q.getResultList();
    }
     
     public List<Mensaje> queryMensajesAmigos (int idEmisor, int idReceptor) {
         Query q = this.em.createNamedQuery("Mensaje.findByIdEmisorIdReceptor");
         q.setParameter("idReceptor", idReceptor);
         q.setParameter("idEmisor", idEmisor);
-        try {
-            return (List) q.getResultList();
-        } catch(NoResultException e) {
-            return null;
-        }
+        return (List) q.getResultList();
     }
+    
     public List<Mensaje> queryfindByUserMensageList(int userID) {
         Query q = this.em.createNamedQuery("Mensaje.findByUserMensageList");
         
         q.setParameter("userID",userID );
-        try {
-            return (List) q.getResultList();
-        } catch(NoResultException e) {
-            return null;
-        }
+        return (List) q.getResultList();
     }
+    
     public List<Mensaje> queryfindByEmisor(Usuario idEmisor) {
         Query q = this.em.createNamedQuery("Mensaje.findByIdEmisor");
         
         q.setParameter("idEmisor",idEmisor );
-        try {
-            return (List) q.getResultList();
-        } catch(NoResultException e) {
-            return null;
-        }
+        return (List) q.getResultList();
     }
+    
      public List<Mensaje> queryfindByReceptor(Usuario idReceptor) {
         Query q = this.em.createNamedQuery("Mensaje.findByIdReceptor");
         
         q.setParameter("idReceptor",idReceptor );
-        try {
-            return (List) q.getResultList();
-        } catch(NoResultException e) {
-            return null;
-        }
+        return (List) q.getResultList();
     }
 }
