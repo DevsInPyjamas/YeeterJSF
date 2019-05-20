@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Creaci&oacute;n de post</title>
+        <ui:include src="WEB-INF/navbar.xhtml"/>
+    </h:head>
+    <h:body>        
+        <h:panelGroup class="content">
+            <h:panelGroup class="bot-grupos">
+                <nav class="navbar navbar-dark bg-dark mb-5">
+                    <span class="navbar-brand">Crear un nuevo Post</span>
+                </nav>
+                <div class="card-body row align-items-center" align="center">
+                    <h:panelGroup class="col-11">
+                        <h:form>
+                            <h:inputTextarea value="#{postBean.post.contenido}" required=""></h:inputTextarea><br/>
+                            <h:selectOneMenu value="#{postBean.selectedGrupo}">
+                                <f:selectItem itemValue="#{-1}" itemLabel="P&uacute;blico"/>
+                                <f:selectItems value="#{postBean.grupos}" var="grupo"
+                                               itemValue="#{grupo.id}" itemLabel="#{grupo.nombre}"/>
+                            </h:selectOneMenu><br/>
+                            <div class="btn-group" role="group">
+                                <h:link outcome="welcomepage" class="btn btn-lg btn-outline-secondary">
+                                    Cancelar
+                                </h:link>
+                                <h:commandButton class="btn btn-lg btn-outline-info btn-block" value="Publicar"
+                                                 action="#{postBean.doNewPost()}" />
+                            </div>
+                        </h:form>
+                    </h:panelGroup>
+                </div>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:body>
+</html>
+
