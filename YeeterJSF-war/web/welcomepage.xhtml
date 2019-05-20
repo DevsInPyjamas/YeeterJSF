@@ -5,10 +5,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
-        <ui:include src="WEB-INF/head.xhtml"/>
+        <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
     <h:body>
-        <h:panelGrid>#{welcomePageBean.loggedUser.id}</h:panelGrid>
+        <h:panelGrid styleClass="alert">#{welcomePageBean.loggedUser.id}</h:panelGrid>
     </h:body>
 </html>
 
