@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <ui:include src="WEB-INF/head.xhtml"/>
+        <title>Yeeter - Login</title>
+        <link rel="stylesheet" href="assets/css/loginstyle.css"/>
+    </h:head>
+    <h:body styleClass="body-container">
+        <div class="body-container">
+            <div class="container d-flex justify-content-center" style="align-items: center;">
+                <div style="width: 250px;">
+                    <ui:fragment rendered="#{yeeterLoginBean.messageRegister != null}">
+                        <div class="alert alert-success">
+                            #{yeeterLoginBean.messageRegister}
+                        </div>
+                    </ui:fragment>
+                    <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+                    <h:form class="form-login-container">
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <h:inputText value="#{yeeterLoginBean.email}" 
+                                     styleClass="form-control #{( yeeterLoginBean.isEmailError() ) ? 'is-invalid' : ''}" 
+                                     p:placeholder="Email"/>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <h:inputSecret value="#{yeeterLoginBean.password}" 
+                                       styleClass="form-control #{( yeeterLoginBean.isPasswordError() ) ? 'is-invalid' : ''}" 
+                                       p:placeholder="Password"/>
+                        <div class="checkbox mb-3 mt-3">
+                            <ui:fragment rendered="#{yeeterLoginBean.error != null}">
+                                <div class="alert alert-warning">
+                                    #{yeeterLoginBean.error}
+                                </div>
+                            </ui:fragment>
+                            <!--a class="text-muted" href="forgotpswrd.jsp">Contraseña Olvidada</a-->
+                        </div>
+                        <div class="btn-group" role="group">
+                            <a href="register.jsp" class="btn btn-lg btn-outline-secondary">
+                                Registrarse
+                            </a>
+                            <h:commandButton value="Entrar" 
+                                             class="btn btn-lg btn-outline-info btn-block" 
+                                             action="#{yeeterLoginBean.doLogin()}"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
