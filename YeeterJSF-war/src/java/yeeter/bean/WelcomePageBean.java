@@ -7,7 +7,7 @@ package yeeter.bean;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import yeeterapp.entity.Usuario;
 
@@ -16,7 +16,7 @@ import yeeterapp.entity.Usuario;
  * @author alec
  */
 @Named(value = "welcomePageBean")
-@Dependent
+@RequestScoped
 public class WelcomePageBean {
     
     @Inject YeeterSessionBean sessionBean;

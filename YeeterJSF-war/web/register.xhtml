@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Yeeter - Register</title>
+        <ui:include src="WEB-INF/head.xhtml"/>
+        <link rel="stylesheet" href="assets/css/loginstyle.css"/>
+    </h:head>
+    <h:body>
+        <div class="container d-flex justify-content-center">
+            <h1 class="mt-5 justify-content-center">Crear cuenta</h1>
+        </div>
+        <div class="body-container">
+            <h:form>
+                <div style="align-items: center;">
+                    <ui:fragment rendered="#{yeeterRegisterBean.usernameError}">
+                        <div class="alert alert-warning">
+                            #{yeeterRegisterBean.errorMessage}
+                        </div>
+                    </ui:fragment>
+                    
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Username</span>
+                        </div>
+                        <h:inputText styleClass="form-control #{yeeterRegisterBean.usernameError ? 'is-invalid' : ''}" required="true"
+                                     value="#{yeeterRegisterBean.username}"/>
+                    </div>
+                    <ui:fragment rendered="#{yeeterRegisterBean.emailError}">
+                        <div class="alert alert-warning">
+                            #{yeeterRegisterBean.errorMessage}
+                        </div>
+                    </ui:fragment>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span style="width: 38px; height: 38px; padding-right:3px; padding-top: 3px; display:inline-block;">
+                                <i class="fas fa-envelope fa-2x"></i>
+                            </span>
+                        </div>
+                        <h:inputText styleClass="form-control #{yeeterRegisterBean.emailError ? 'is-invalid' : ''}" required="true"
+                                     value="#{yeeterRegisterBean.email}"/>
+                    </div>
+                    <ui:fragment rendered="#{yeeterRegisterBean.passwordError}">
+                        <div class="alert alert-warning">
+                            #{yeeterRegisterBean.errorMessage}
+                            Error!
+                        </div>
+                    </ui:fragment>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-prepend">
+                            <span style="width: 38px; height: 38px; padding-right:3px; padding-top: 3px; display:inline-block;">
+                                <i class="fas fa-key fa-2x"></i>
+                            </span>
+                        </div>
+                        </div>
+                        <h:inputSecret required="true" styleClass="form-control #{yeeterRegisterBean.passwordError ? 'is-invalid' : ''}" value="#{yeeterRegisterBean.password1}"/>
+                        <h:inputSecret required="true" styleClass="form-control #{yeeterRegisterBean.passwordError ? 'is-invalid' : ''}" value="#{yeeterRegisterBean.password2}"/>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Nombre</span>
+                        </div>
+                    <h:inputText styleClass="form-control" required="true"
+                           value="#{yeeterRegisterBean.name}"/>
+                    </div>
+                    
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Apellidos</span>
+                        </div>
+                        <h:inputText class="form-control" required="true" value="#{yeeterRegisterBean.lastname}"/>
+                    </div>
+                    
+                    <h:panelGroup rendered="false" class="alert alert-warning">
+                        La fecha no es correcta
+                    </h:panelGroup>
+                    
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Fecha de Nacimiento</span>
+                        </div>
+                        <h:inputText styleClass="form-control" required="true" value="#{yeeterRegisterBean.birth}">
+                            <f:convertDateTime pattern="yyyy-MM-dd"/>  
+                        </h:inputText>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Biografía</span>
+                        </div>
+                        <h:inputTextarea class="form-control" value="#{yeeterRegisterBean.bio}"></h:inputTextarea>
+                    </div>
+                    <h:commandButton action="#{yeeterRegisterBean.doRegister()}"
+                                     class="btn btn-lg btn-outline-info btn-block mt-5" 
+                                     value="Registrarse"/>
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
