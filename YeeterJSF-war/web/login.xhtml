@@ -37,9 +37,8 @@
                             <!--a class="text-muted" href="forgotpswrd.jsp">Contraseña Olvidada</a-->
                         </div>
                         <div class="btn-group" role="group">
-                            <a href="register.jsp" class="btn btn-lg btn-outline-secondary">
-                                Registrarse
-                            </a>
+                            <h:commandButton action="register"  styleClass="btn btn-lg btn-outline-secondary"
+                                             value="Registrarse"/>
                             <h:commandButton value="Entrar" 
                                              class="btn btn-lg btn-outline-info btn-block" 
                                              action="#{yeeterLoginBean.doLogin()}"/>
