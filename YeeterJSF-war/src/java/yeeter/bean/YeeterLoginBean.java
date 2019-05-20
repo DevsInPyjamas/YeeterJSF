@@ -5,7 +5,6 @@
  */
 package yeeter.bean;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -76,16 +75,16 @@ public class YeeterLoginBean {
     public String doLogin() {
         if(email == null || email.isEmpty()) {
             this.error = "Email vacío";
-            return "login";
+            return null;
         }
         if(password == null || password.isEmpty()){
             this.error = "Contraseña vacía";
-            return "login";
+            return null;
         }
         Usuario tryingToLog = this.usuarioFacade.queryUserByEmail(email);
         if(tryingToLog == null || !tryingToLog.getPassword().equals(password)) {
             this.error = "Combinación de email o contraseña errónea";
-            return "login";
+            return null;
         }
         this.sessionBean.setIdLoggedUser(tryingToLog.getId());
         return "welcomepage";
