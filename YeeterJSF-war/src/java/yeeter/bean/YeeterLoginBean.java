@@ -27,6 +27,8 @@ public class YeeterLoginBean {
     private String password;
     private String error;
     private String messageRegister;
+    private String registerMessage;
+    
     
     @Inject
     private YeeterSessionBean sessionBean;
@@ -70,7 +72,14 @@ public class YeeterLoginBean {
     public void setMessageRegister(String messageRegister) {
         this.messageRegister = messageRegister;
     }
-    
+
+    public String getRegisterMessage() {
+        return registerMessage;
+    }
+
+    public void setRegisterMessage(String registerMessage) {
+        this.registerMessage = registerMessage;
+    }
     
     public String doLogin() {
         if(email == null || email.isEmpty()) {
