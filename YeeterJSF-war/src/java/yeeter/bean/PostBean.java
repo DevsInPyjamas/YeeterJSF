@@ -70,7 +70,7 @@ public class PostBean {
     
     @PostConstruct
     public void init() {
-        grupos = this.sessionBean.getLoggedUserObject().getGrupoList1();
+        grupos = this.sessionBean.getLoggedUserObject().getGrupoList();
         post = new Post();
     }
     
