@@ -25,7 +25,7 @@ public class YeeterSessionBean implements Serializable {
     
     
     
-    private String idLoggedUser;
+    private Integer idLoggedUser;
 
     /**
      * Creates a new instance of YeeterSessionBean
@@ -33,11 +33,11 @@ public class YeeterSessionBean implements Serializable {
     public YeeterSessionBean() {
     }
 
-    public String getIdLoggedUser() {
+    public Integer getIdLoggedUser() {
         return idLoggedUser;
     }
 
-    public void setIdLoggedUser(String idLoggedUser) {
+    public void setIdLoggedUser(Integer idLoggedUser) {
         this.idLoggedUser = idLoggedUser;
     }
     

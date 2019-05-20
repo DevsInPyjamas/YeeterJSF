@@ -5,9 +5,11 @@
  */
 package yeeter.bean;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import yeeterapp.ejb.UsuarioFacade;
 import yeeterapp.entity.Usuario;
 
@@ -26,6 +28,9 @@ public class YeeterLoginBean {
     private String password;
     private String error;
     private String messageRegister;
+    
+    @Inject
+    private YeeterSessionBean sessionBean;
     
     
     
@@ -82,7 +87,7 @@ public class YeeterLoginBean {
             this.error = "Combinación de email o contraseña errónea";
             return "login";
         }
-        
+        this.sessionBean.setIdLoggedUser(tryingToLog.getId());
         return "welcomepage";
     }
     
