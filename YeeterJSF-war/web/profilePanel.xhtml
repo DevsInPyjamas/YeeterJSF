@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" >
+    <h:head>
+        <title>Perfil de usuario</title>
+        <link rel="stylesheet" href="assets/css/estilos.css"/>
+        <link rel="stylesheet" href="assets/css/loginstyle.css"/>
+        <ui:include src="WEB-INF/navbar.xhtml"/>
+    </h:head>
+    <h:body>
+        <ui:fragment rendered="#{profileBean.message != null}">
+            <div class="alert alert-success">
+                #{profileBean.message}
+            </div>
+        </ui:fragment>
+        <div class="container">
+            <div class="bot">
+                <h:form>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"> Nombre de usuario </label>
+                        <div class="col-sm-7">
+                            <h:inputText value="#{profileBean.usuarioSeleccionado.username}"
+                                     readonly="#{!profileBean.editar}" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"> Nombre </label>
+                        <div class="col-sm-7">
+                            <h:inputText value="#{profileBean.usuarioSeleccionado.nombre}"
+                                         readonly="#{!profileBean.editar}" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"> Apellidos </label>
+                        <div class="col-sm-7">
+                            <h:inputText value="#{profileBean.usuarioSeleccionado.apellidos}"
+                                         readonly="#{!profileBean.editar}" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"> Email </label>
+                        <div class="col-sm-7">
+                            <h:inputText value="#{profileBean.usuarioSeleccionado.correo}"
+                                         readonly="#{!profileBean.editar}" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"> Fecha de Nacimiento </label>
+                        <div class="col-sm-7">
+                            <h:inputText  value="#{profileBean.usuarioSeleccionado.fechaNacimiento}"
+                                         readonly="#{!profileBean.editar}" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"> Email </label>
+                        <div class="col-sm-7">
+                            <h:inputText value="#{profileBean.usuarioSeleccionado.correo}"
+                                         readonly="#{!profileBean.editar}" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"> Biografía </label>
+                        <div class="col-sm-7">
+                            <h:inputTextarea value="#{profileBean.usuarioSeleccionado.correo}"
+                                         readonly="#{!profileBean.editar}" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <div class="btn-group" >
+                                <h:commandButton action="#{profileBean.doModificar()}" value="Modificar Perfil" 
+                                                 rendered="#{profileBean.isLoggedUser and !profileBean.editar}" class="btn btn-primary"/>
+                                <h:commandButton action="#{profileBean.doGuardar()}" type="submit" value="Guardar" rendered="#{profileBean.isLoggedUser and profileBean.editar}" 
+                                                 class="btn btn-primary" />
+                                <h:link class="btn btn-secondary" value="Modificar Contraseña" rendered="#{profileBean.isLoggedUser and !profileBean.editar}"/>
+                                <h:link rendered="#{!profileBean.isLoggedUser}" value="Enviar Mensaje" class="btn btn-primary" />
+                                <h:link value="Añadir amigo" class="btn btn-primary" rendered="#{!profileBean.isLoggedUser}" />
+                                <h:link value="Aceptar petición" class="btn btn-primary" rendered="#{!profileBean.isLoggedUser}" />
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>
+
