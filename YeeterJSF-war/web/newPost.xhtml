@@ -8,14 +8,14 @@
         <title>Creaci&oacute;n de post</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
-    <h:body>        
-        <h:panelGroup class="content">
-            <h:panelGroup class="bot-grupos">
-                <nav class="navbar navbar-dark bg-dark mb-5">
+    <h:body>
+        <div class="content">
+            <div class="bot-grupos">
+                <nav class="navbar navbar-dark bg-dark mb-5" >
                     <span class="navbar-brand">Crear un nuevo Post</span>
                 </nav>
                 <div class="card-body row align-items-center" align="center">
-                    <h:panelGroup class="col-11">
+                    <div class="col-11">
                         <h:form>
                             <h:inputTextarea value="#{postBean.post.contenido}" required=""></h:inputTextarea><br/>
                             <h:selectOneMenu value="#{postBean.selectedGrupo}">
@@ -31,10 +31,10 @@
                                                  action="#{postBean.doNewPost()}" />
                             </div>
                         </h:form>
-                    </h:panelGroup>
+                    </div>
                 </div>
-            </h:panelGroup>
-        </h:panelGroup>
+            </div>
+        </div>
     </h:body>
 </html>
 
