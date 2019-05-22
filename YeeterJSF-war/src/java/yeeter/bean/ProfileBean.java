@@ -90,7 +90,6 @@ public class ProfileBean {
         this.init();
         this.message = "Se ha modificado correctamente el perfil";
         this.editar = false;
-        System.out.println("yeeey");
         return "welcomepage";
     }
     
