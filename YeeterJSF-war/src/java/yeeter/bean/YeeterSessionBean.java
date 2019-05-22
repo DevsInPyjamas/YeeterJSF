@@ -45,4 +45,9 @@ public class YeeterSessionBean implements Serializable {
         return (idLoggedUser == null) ? null : this.usuarioFacade.find(idLoggedUser);
     }
     
+    public String doRemoveLoggedUser() {
+        this.idLoggedUser = null;
+        return "login";
+    }
+    
 }
