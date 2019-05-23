@@ -4,11 +4,34 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Yeeter - Notificaciones</title>
+        <title>(#{yeeterNotificationsBean.notificationsList.size()}) Yeeter - Notificaciones</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>
+        <link rel="stylesheet" href="assets/css/loginstyle.css"/>
+        <link rel="stylesheet" href="assets/css/estilos.css"/>
     </h:head>
     <h:body>
-        Notificaciones OH YEAH MAMA
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-9">
+                    <nav class="navbar navbar-dark bg-dark mb-5">
+                        <span class="navbar-brand">Notificaciones</span>
+                        <h:form class="inline-form">
+                            <h:commandButton value="Marcar todas como leídas"
+                                styleClass="btn btn-outline-info" 
+                                action="#{yeeterNotificationsBean.doReadAllNotifications()}"
+                                />
+                        </h:form>
+                    </nav>
+                    <ui:repeat value="#{yeeterNotificationsBean.notificationsList}" var="notification">
+                        <div class="card #{ notificacion.getNotificacionLeida() ? 'not-read' : ''}">                
+                            #{notification.contenido}
+                        </div>
+                    </ui:repeat>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
     </h:body>
 </html>
 
