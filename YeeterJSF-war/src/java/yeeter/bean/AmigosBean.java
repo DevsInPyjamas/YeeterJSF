@@ -97,4 +97,8 @@ public class AmigosBean implements Serializable {
         
         return "buscaramigo";
     }
+    
+    public boolean noAmigo(Usuario usuario1, Usuario usuario2){
+        return !usuario1.getUsuarioList().contains(usuario2);
+    }
 }

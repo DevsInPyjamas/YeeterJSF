@@ -40,7 +40,8 @@ and open the template in the editor.
             </h:column>
             <h:column>
                 <f:facet name = "header"></f:facet>
-                <h:commandLink action="#{amigosBean.doAddFriend(coincidencia)}" value="Añadir" />
+                <h:commandButton action="#{amigosBean.doAddFriend(coincidencia)}"
+                                 rendered = "#{amigosBean.noAmigo(yeeterSessionBean.loggedUserObject, coincidencia) and !yeeterSessionBean.loggedUserObject.equals(coincidencia)}" value="Añadir" />
             </h:column>
         </h:dataTable>
         </h:form>
