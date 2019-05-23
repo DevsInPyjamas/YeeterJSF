@@ -9,7 +9,7 @@
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
     <h:body>
-        <div class="content">
+        <div class="container">
             <div class="bot-grupos">
                 <nav class="navbar navbar-dark bg-dark mb-5" >
                     <span class="navbar-brand">Crear un nuevo Post</span>
@@ -17,7 +17,7 @@
                 <div class="card-body row align-items-center" align="center">
                     <div class="col-11">
                         <h:form>
-                            <h:inputTextarea value="#{postBean.post.contenido}" required=""></h:inputTextarea><br/>
+                            <h:inputTextarea value="#{postBean.post.contenido}" required="" cols="10"></h:inputTextarea><br/>
                             <h:selectOneMenu value="#{postBean.selectedGrupo}">
                                 <f:selectItem itemValue="#{-1}" itemLabel="P&uacute;blico"/>
                                 <f:selectItems value="#{postBean.grupos}" var="grupo"

@@ -71,11 +71,11 @@
                         <div class="col-sm-10">
                             <div class="btn-group" >
                                 <h:commandButton action="#{profileBean.doModificar()}" value="Modificar Perfil" 
-                                                 rendered="#{profileBean.isLoggedUser and !profileBean.editar}" class="btn btn-primary"/>
-                                <h:commandButton action="#{profileBean.doGuardar()}" type="submit" value="Guardar" rendered="#{profileBean.isLoggedUser and profileBean.editar}" 
-                                                 class="btn btn-primary" />
-                                <h:link class="btn btn-secondary" value="Modificar Contraseña" rendered="#{profileBean.isLoggedUser and !profileBean.editar}"/>
-                                <h:link rendered="#{!profileBean.isLoggedUser}" value="Enviar Mensaje" class="btn btn-primary" />
+                                                 rendered="#{profileBean.isLoggedUser and !profileBean.editar}" class="btn btn-outline-info"/>
+                                <h:commandButton action="#{profileBean.doGuardar()}" value="Guardar" rendered="#{profileBean.isLoggedUser and profileBean.editar}" 
+                                                 class="btn btn-outline-info" />
+                                <h:link class="btn btn-outline-secondary" value="Modificar Contraseña" rendered="#{profileBean.isLoggedUser and !profileBean.editar}"/>
+                                <h:link rendered="#{!profileBean.isLoggedUser}" value="Enviar Mensaje" class="btn btn-lg btn-outline-secondary" />
                                 <h:link value="Añadir amigo" class="btn btn-primary" rendered="#{!profileBean.isLoggedUser}" />
                                 <h:link value="Aceptar petición" class="btn btn-primary" rendered="#{!profileBean.isLoggedUser}" />
                             </div>

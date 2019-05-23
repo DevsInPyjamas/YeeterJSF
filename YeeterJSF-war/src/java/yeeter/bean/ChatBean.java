@@ -40,4 +40,8 @@ public class ChatBean {
     public void init(){
         this.usuario = this.sessionBean.getLoggedUserObject();
     }
+    
+    public String pruebaClick(){
+        return "welcomepage";
+    }
 }
