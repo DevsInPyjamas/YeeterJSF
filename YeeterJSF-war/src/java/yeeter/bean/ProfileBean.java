@@ -34,8 +34,9 @@ public class ProfileBean implements Serializable {
     protected boolean isLoggedUser;
     protected boolean editar = false;
     protected Usuario usuarioSeleccionado;
-    protected String message;
+    protected String message, error;
     protected String fecha;
+    protected String oldPass, newPass, newPassEq;
 
     /**
      * Creates a new instance of ProfileBean
@@ -86,12 +87,45 @@ public class ProfileBean implements Serializable {
     public void setEditar(boolean editar) {
         this.editar = editar;
     }
+
+    public String getOldPass() {
+        return oldPass;
+    }
+
+    public void setOldPass(String oldPass) {
+        this.oldPass = oldPass;
+    }
+
+    public String getNewPass() {
+        return newPass;
+    }
+
+    public void setNewPass(String newPass) {
+        this.newPass = newPass;
+    }
+
+    public String getNewPassEq() {
+        return newPassEq;
+    }
+
+    public void setNewPassEq(String newPassEq) {
+        this.newPassEq = newPassEq;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
  
     @PostConstruct
     public void init(){
         this.usuarioSeleccionado = this.sessionBean.getLoggedUserObject();
         this.setIsLoggedUser();
         this.fecha = format.format(usuarioSeleccionado.getFechaNacimiento());
+        message = error = null;
     }
     
     public String doModificar(){
@@ -108,4 +142,23 @@ public class ProfileBean implements Serializable {
         return "profilePanel";
     }
     
+    public String doGuardarPass() {
+        if(oldPass.equals(usuarioSeleccionado.getPassword())){
+            if(newPass.equals(newPassEq)){
+                this.usuarioSeleccionado.setPassword(newPass);
+                this.usuarioFacade.edit(usuarioSeleccionado);
+                message = "Contraseña modificada correctamente";
+                error = null;
+            } else {
+                error = "Las contraseñas no coinciden";
+                message = null;
+                return "modificarContrasena";
+            }
+        } else {
+            error = "Contraseña antigua incorrecta";
+            message = null;
+            return "modificarContrasena";
+        }
+        return "profilePanel";
+    }
 }

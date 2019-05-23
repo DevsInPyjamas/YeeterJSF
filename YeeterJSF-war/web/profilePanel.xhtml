@@ -10,13 +10,13 @@
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
     <h:body>
-        <ui:fragment rendered="#{profileBean.message != null}">
-            <div class="alert alert-success">
-                #{profileBean.message}
-            </div>
-        </ui:fragment>
         <div class="container">
             <div class="bot">
+                <ui:fragment rendered="#{profileBean.message != null}">
+                    <div class="alert alert-success">
+                        #{profileBean.message}
+                    </div>
+                </ui:fragment>
                 <h:form>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"> Nombre de usuario </label>
@@ -74,7 +74,8 @@
                                                  rendered="#{profileBean.isLoggedUser and !profileBean.editar}" class="btn btn-outline-info"/>
                                 <h:commandButton action="#{profileBean.doGuardar()}" value="Guardar" rendered="#{profileBean.isLoggedUser and profileBean.editar}" 
                                                  class="btn btn-outline-info" />
-                                <h:link class="btn btn-outline-secondary" value="Modificar Contraseña" rendered="#{profileBean.isLoggedUser and !profileBean.editar}"/>
+                                <h:link class="btn btn-outline-secondary" value="Modificar Contraseña" rendered="#{profileBean.isLoggedUser and !profileBean.editar}"
+                                        outcome="modificarContrasena"/>
                                 <h:link rendered="#{!profileBean.isLoggedUser}" value="Enviar Mensaje" class="btn btn-lg btn-outline-secondary" />
                                 <h:link value="Añadir amigo" class="btn btn-primary" rendered="#{!profileBean.isLoggedUser}" />
                                 <h:link value="Aceptar petición" class="btn btn-primary" rendered="#{!profileBean.isLoggedUser}" />
