@@ -16,7 +16,6 @@ import yeeterapp.ejb.NotificacionesFacade;
 import yeeterapp.ejb.PeticionAmistadFacade;
 import yeeterapp.entity.Notificaciones;
 import yeeterapp.entity.PeticionAmistad;
-// import yeeterapp.entity.PeticionAmistadPK;
 import yeeterapp.entity.Usuario;
 
 /**
@@ -26,8 +25,7 @@ import yeeterapp.entity.Usuario;
 @Named(value = "yeeterNotificationsBean")
 @RequestScoped
 public class YeeterNotificationsBean {
-
-    @EJB
+@EJB
     private PeticionAmistadFacade peticionAmistadFacade;
 
     @EJB
@@ -62,8 +60,14 @@ public class YeeterNotificationsBean {
     public void setPeticionesAmistadList(List<PeticionAmistad> peticionesAmistadList) {
         this.peticionesAmistadList = peticionesAmistadList;
     }
-    
-    
+
+    public long getNotRead() {
+        return notRead;
+    }
+
+    public void setNotRead(long notRead) {
+        this.notRead = notRead;
+    }
     
     @PostConstruct
     public void init() {
@@ -92,7 +96,5 @@ public class YeeterNotificationsBean {
         notificacionesFacade.edit(notificacion);
         this.init();
         return null;
-    }
-    
-    
+    }  
 }
