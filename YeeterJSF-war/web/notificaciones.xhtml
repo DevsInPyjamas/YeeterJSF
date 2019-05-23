@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="assets/css/estilos.css"/>
     </h:head>
     <h:body>
-        <div class="container-fluid">
+        <div class="container-fluid mb-5">
             <div class="row">
                 <div class="col"></div>
                 <div class="col-9">
@@ -24,8 +24,18 @@
                         </h:form>
                     </nav>
                     <ui:repeat value="#{yeeterNotificationsBean.notificationsList}" var="notification">
-                        <div class="card #{ notificacion.getNotificacionLeida() ? 'not-read' : ''}">                
-                            #{notification.contenido}
+                        <div class="card mt-2 mb-2 #{ !notificacion.getNotificacionLeida() ? 'not-read' : ''}">                
+                            <div class="card-body row align-items-center">
+                                <div class="col-11 ">
+                                    #{notification.contenido}
+                                </div>
+                                <h:form rendered="#{ !notificacion.getNotificacionLeida()}">
+                                    <h:commandButton styleClass="btn btn-outline-info btn-sm"
+                                        action="#{yeeterNotificationsBean.doReadNotification(notification.id)}">
+                                        <i class="fas fa-check"></i>
+                                    </h:commandButton>
+                                </h:form>
+                            </div>
                         </div>
                     </ui:repeat>
                 </div>
