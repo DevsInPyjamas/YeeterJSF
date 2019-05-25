@@ -51,4 +51,9 @@ public class GruposBean implements Serializable {
     public void init(){
         listaGrupos = sessionBean.getLoggedUserObject().getGrupoList();
     }
+    
+    public String chooseGroup(Grupo grupo){
+        this.setGrupoSeleccionado(grupo);
+        return "grupo";
+    }
 }

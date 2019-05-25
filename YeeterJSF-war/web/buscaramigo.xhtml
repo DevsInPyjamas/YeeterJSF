@@ -15,7 +15,7 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <h:inputText id = "search" styleClass="form-control mr-sm-2" value = "#{amigosBean.busqueda}"></h:inputText>
+            <h:inputText id = "search" value = "#{amigosBean.busqueda}"></h:inputText>
             <div class="input-group-append">
                 <h:commandButton action = "#{amigosBean.searchCoincidences(amigosBean.busqueda)}">
                     <span style="width: 25px; height: 25px; display:inline-block;">
