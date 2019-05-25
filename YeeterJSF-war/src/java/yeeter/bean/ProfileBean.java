@@ -14,6 +14,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import yeeterapp.ejb.UsuarioFacade;
+import yeeterapp.entity.PeticionAmistad;
 import yeeterapp.entity.Usuario;
 
 /**
@@ -126,14 +127,22 @@ public class ProfileBean implements Serializable {
     @PostConstruct
     public void init(){
         this.usuarioSeleccionado = (this.amigosBean.getUsuarioSeleccionado() == null) ? this.sessionBean.getLoggedUserObject() : this.amigosBean.getUsuarioSeleccionado();
-        this.setIsLoggedUser();
-        this.fecha = format.format(usuarioSeleccionado.getFechaNacimiento());
+        this.updateData();
         message = error = null;
     }
     
     public String doModificar(){
-        editar = true;
+        this.setEditar(true);
         return "profilePanel";
+    }
+    
+    public boolean existePeticionYa(){
+        return this.sessionBean.getLoggedUserObject().getPeticionAmistadList().contains(new PeticionAmistad(sessionBean.getIdLoggedUser(), usuarioSeleccionado.getId()));
+    }
+    
+    public void updateData() {
+        this.setIsLoggedUser();
+        this.fecha = format.format(usuarioSeleccionado.getFechaNacimiento());
     }
     
     public String doGuardar() throws ParseException {

@@ -37,7 +37,10 @@
                         </h:link>
                     </li>
                     <li class="nav-item">
-                        <h:link styleClass="nav-link"><i class="fas fa-user"></i> Perfil</h:link>
+                        <h:form>
+                            <h:commandLink styleClass="nav-link" action="#{welcomePageBean.doRedirectToProfile}"><i class="fas fa-user"></i> Perfil</h:commandLink>    
+                        </h:form>
+                        
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-3">

@@ -32,6 +32,7 @@ public class AmigosBean implements Serializable {
     private PeticionAmistadFacade peticionFacade;
     
     @Inject YeeterSessionBean sessionBean;
+    @Inject ProfileBean profileBean;
     protected List<Usuario> listaCoincidencias;
     protected String busqueda;
     protected String message;
@@ -107,6 +108,7 @@ public class AmigosBean implements Serializable {
     
     public String doRedirectToUserProfile(Usuario user){
         this.setUsuarioSeleccionado(user);
+        profileBean.init();
         return "profilePanel";
     }
 }

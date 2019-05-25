@@ -76,9 +76,12 @@
                                                  class="btn btn-outline-info" />
                                 <h:link class="btn btn-outline-secondary" value="Modificar Contraseña" rendered="#{profileBean.isLoggedUser and !profileBean.editar}"
                                         outcome="modificarContrasena"/>
-                                <h:link rendered="#{!profileBean.isLoggedUser}" value="Enviar Mensaje" class="btn btn-lg btn-outline-secondary" />
-                                <h:link value="Añadir amigo" class="btn btn-primary" rendered="#{!profileBean.isLoggedUser}" />
-                                <h:link value="Aceptar petición" class="btn btn-primary" rendered="#{!profileBean.isLoggedUser}" />
+                                <h:commandButton value="Enviar Mensaje" class="btn btn-outline-info" action="#{chatBean.doCrearChat(profileBean.usuarioSeleccionado)}" 
+                                                 rendered="#{!profileBean.isLoggedUser and yeeterSessionBean.loggedUserObject.usuarioList.contains(profileBean.usuarioSeleccionado)}"/>
+                                <h:commandButton value="Añadir amigo" class="btn btn-outline-secondary" action="#{amigosBean.doAddFriend(profileBean.usuarioSeleccionado)}"
+                                        rendered="#{!profileBean.isLoggedUser and !yeeterSessionBean.loggedUserObject.usuarioList.contains(profileBean.usuarioSeleccionado) and !profileBean.existePeticionYa()}" />
+                                <h:commandButton value="Aceptar petición" class="btn btn-outline-secondary" action="#{yeeterNotificationsBean.doAcceptFriendRequest(profileBean.usuarioSeleccionado.id)}"
+                                                 rendered="#{!profileBean.isLoggedUser and profileBean.existePeticionYa()}" />
                             </div>
                         </div>
                     </div>
