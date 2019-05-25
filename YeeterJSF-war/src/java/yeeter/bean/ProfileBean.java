@@ -30,6 +30,9 @@ public class ProfileBean implements Serializable {
     @Inject
     private YeeterSessionBean sessionBean;
     
+    @Inject
+    private AmigosBean amigosBean;
+    
     private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     protected boolean isLoggedUser;
     protected boolean editar = false;
@@ -122,7 +125,7 @@ public class ProfileBean implements Serializable {
  
     @PostConstruct
     public void init(){
-        this.usuarioSeleccionado = this.sessionBean.getLoggedUserObject();
+        this.usuarioSeleccionado = (this.amigosBean.getUsuarioSeleccionado() == null) ? this.sessionBean.getLoggedUserObject() : this.amigosBean.getUsuarioSeleccionado();
         this.setIsLoggedUser();
         this.fecha = format.format(usuarioSeleccionado.getFechaNacimiento());
         message = error = null;

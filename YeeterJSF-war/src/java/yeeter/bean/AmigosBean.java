@@ -35,6 +35,7 @@ public class AmigosBean implements Serializable {
     protected List<Usuario> listaCoincidencias;
     protected String busqueda;
     protected String message;
+    protected Usuario usuarioSeleccionado;
 
     /**
      * Creates a new instance of AmigosBean
@@ -65,6 +66,14 @@ public class AmigosBean implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public Usuario getUsuarioSeleccionado() {
+        return usuarioSeleccionado;
+    }
+
+    public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
+        this.usuarioSeleccionado = usuarioSeleccionado;
+    }
     
     @PostConstruct
     public void init(){
@@ -94,5 +103,10 @@ public class AmigosBean implements Serializable {
     
     public boolean noAmigo(Usuario usuario1, Usuario usuario2){
         return !usuario1.getUsuarioList().contains(usuario2);
+    }
+    
+    public String doRedirectToUserProfile(Usuario user){
+        this.setUsuarioSeleccionado(user);
+        return "profilePanel";
     }
 }

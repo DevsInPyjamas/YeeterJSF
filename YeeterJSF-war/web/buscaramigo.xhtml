@@ -53,6 +53,16 @@ and open the template in the editor.
                     </button>
                 </h:commandLink>
             </h:column>
+            <h:column>
+                <f:facet name="header"></f:facet>
+                <h:commandLink action="#{amigosBean.doRedirectToUserProfile(coincidencia)}">
+                    <button class="btn btn-outline-dark">
+                        <span class="fa-stack" style="width: 25px; height: 25px;">
+                            <i class="fas fa-user-alt"></i>
+                        </span>
+                    </button>
+                </h:commandLink>
+            </h:column>
         </h:dataTable>
         </h:form>
     </h:body>
