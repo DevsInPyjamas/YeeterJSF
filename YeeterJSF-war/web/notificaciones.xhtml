@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>(#{yeeterNotificationsBean.notRead}) Yeeter - Notificaciones</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>
@@ -35,37 +36,49 @@
                         <div class="card mt-2 mb-2 #{ !notification.notificacionLeida ? 'not-read' : ''}"
                              onClick="location.href='yeeter/#{notification.link}';" style="cursor: pointer;">                
                             <div class="card-body row align-items-center">
-                                <div class="col-11 ">
+                                <div class="col-10">
                                     #{notification.contenido}                                    
                                 </div>
-                                <h:form rendered="#{ !notification.notificacionLeida}">
-                                    <h:commandButton styleClass="btn btn-outline-info btn-sm"
-                                        action="#{yeeterNotificationsBean.doReadNotification(notification.id)}">
+                                <h:link outcome="#{notification.link}" class="btn 
+                                        btn-outline-#{ !notification.notificacionLeida ? 'info' : 'dark'} 
+                                        btn-sm mr-2">
+                                    <i class="fas fa-directions"></i>
+                                </h:link>
+                                <h:form rendered="#{ !notification.notificacionLeida}" id="notification">
+                                    <a styleClass="btn btn-outline-info btn-sm"
+                                        jsf:action="#{yeeterNotificationsBean.doReadNotification(notification.id)}" jsf:id="markAsRead">
                                         <i class="fas fa-check"></i>
-                                    </h:commandButton>
-                                </h:form>
-                            </div>
-                        </div>
-                    </ui:repeat>
-                    
-                    <ui:repeat value="#{yeeterNotificationsBean.peticionesAmistadList}" var="peticion">
-                        <div class="card mt-2 mb-2 not-read"
-                             onClick="location.href='/yeeter/';" style="cursor: pointer;">                
-                            <div class="card-body row align-items-center">
-                                <div class="col-11 ">
-                                    <br/>
-                                    #{peticion.mensaje}                                    
-                                </div>
-                                <h:form>
-                                    <a 
-                                       jsf:action="#{yeeterNotificationsBean.doAcceptFriendRequest(peticion.peticionAmistadPK)}" 
-                                       class="btn btn-outline-info btn-sm">
-                                       <i class="fas fa-check"></i>
+                                        <f:ajax execute="markAsRead" render="notification"/>
                                     </a>
                                 </h:form>
                             </div>
                         </div>
                     </ui:repeat>
+                    <ui:repeat value="#{yeeterNotificationsBean.peticionesAmistadList}" var="peticion" >
+                        <div class="card mt-2 mb-2 not-read">                
+                            <div class="card-body row align-items-center">
+                                <div class="col-11 ">
+                                    <br/>
+                                    #{peticion.mensaje}                                    
+                                </div>
+                                <h:form id="notifications">
+                                    <a jsf:action="#{
+                                       yeeterNotificationsBean.
+                                           doRedirectToSenderProfile(
+                                           peticion.peticionAmistadPK.usuarioEmisor
+                                           )}">
+                                        <i class="fas fa-user"></i>
+                                    </a>
+                                    <a 
+                                       jsf:action="#{yeeterNotificationsBean.doAcceptFriendRequest(peticion.peticionAmistadPK)}" 
+                                       class="btn btn-outline-info btn-sm" jsf:id="aceptarPeticion">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                </h:form>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                    
                 </div>
                 <div class="col"></div>
             </div>

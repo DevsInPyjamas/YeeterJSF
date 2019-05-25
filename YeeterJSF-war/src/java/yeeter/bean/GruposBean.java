@@ -56,4 +56,12 @@ public class GruposBean implements Serializable {
         this.setGrupoSeleccionado(grupo);
         return "grupo";
     }
+    
+    public boolean isAdmin() {
+        return grupoSeleccionado.getIdCreador().equals(sessionBean.getLoggedUserObject());
+    }
+    
+    public String doRedirectToListMembers() {
+        this.
+    }
 }
