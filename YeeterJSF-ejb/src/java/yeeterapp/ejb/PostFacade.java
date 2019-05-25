@@ -34,20 +34,12 @@ public class PostFacade extends AbstractFacade<Post> {
      public Post queryPost(String post) {
         Query q = this.em.createNamedQuery("Post.findAll");
         q.setParameter("post", post);
-        try {
-            return (Post) q.getResultList();
-        } catch(NoResultException r) {
-            return null;
-        }
+        return (Post) q.getResultList();
     }
 
     public List<Post> queryGroupFeed(int idGroup){
         Query q = this.em.createNamedQuery("Post.findByIdGrupo");
         q.setParameter("idGroup", idGroup);
-        try{
-            return q.getResultList();
-        }catch(NoResultException e){
-            return null;
-        }
+        return q.getResultList();
     }
 }

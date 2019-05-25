@@ -6,6 +6,8 @@
 package yeeterapp.ejb;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -20,6 +22,8 @@ import yeeterapp.entity.Usuario;
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> {
+    
+    private static final Logger LOG = Logger.getLogger(UsuarioFacade.class.getName());
 
     @PersistenceContext(unitName = "YeeterApp-ejbPU")
     private EntityManager em;
@@ -39,6 +43,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         try {
             return (Usuario) q.getSingleResult();
         } catch(NoResultException e) {
+            LOG.log(Level.WARNING, "Se ha producido una excepción", e.getLocalizedMessage());
             return null;
         }
     }
@@ -49,6 +54,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         try {
             return (Usuario) q.getSingleResult();
         } catch(NoResultException e) {
+            LOG.log(Level.WARNING, "Se ha producido una excepción", e.getLocalizedMessage());
             return null;
         }
     }
@@ -67,12 +73,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
                 " select * from Post where idAutor in (select idAmigo from Amigos where ?1 = Amigos.idUsuario)\n" +
                 " and idGrupo is null) xd order by xd.fecha_publicacion desc\n" +
                 " ;", Post.class);
-       q.setParameter(1, id);
-       try {
-           return q.getResultList();
-       } catch(NoResultException e) {
-           return null;
-       }
+        q.setParameter(1, id);
+        return q.getResultList();
     }
 
     public List<Usuario> queryUserByUsernameOrName(String input) {
@@ -80,8 +82,9 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         input = "%" + input + "%"; // Esta linea no estoy seguro de si habría que ponerla o no la verdad
         q.setParameter("input", input);
         try {
-            return (List<Usuario>) q.getResultList();
-        } catch(NoResultException r) {
+        return (List<Usuario>) q.getResultList();
+        } catch(NoResultException e) {
+            LOG.log(Level.WARNING, "Se ha producido una excepción", e.getLocalizedMessage());
             return null;
         }
     }
