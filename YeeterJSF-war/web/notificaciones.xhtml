@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <h:head>
         <title>(#{yeeterNotificationsBean.notRead}) Yeeter - Notificaciones</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>
@@ -10,6 +11,13 @@
         <link rel="stylesheet" href="assets/css/estilos.css"/>
     </h:head>
     <h:body>
+        <!--
+                                    <ui:component rendered="#{yeeterNotificationsBean.message != null}">
+                        <div class="alert alert-success">
+                            #{yeeterNotificationsBean.message}
+                        </div>  
+                    </ui:component>
+        -->
         <div class="container-fluid mb-5">
             <div class="row">
                 <div class="col"></div>
@@ -49,10 +57,11 @@
                                     #{peticion.mensaje}                                    
                                 </div>
                                 <h:form>
-                                    <h:commandButton styleClass="btn btn-outline-info btn-sm"
-                                                     action="#{yeeterNotificationsBean.doAcceptFriendRequest(peticion.peticionAmistadPK)}">
-                                        <i class="fas fa-check"></i>
-                                    </h:commandButton>
+                                    <a 
+                                       jsf:action="#{yeeterNotificationsBean.doAcceptFriendRequest(peticion.peticionAmistadPK)}" 
+                                       class="btn btn-outline-info btn-sm">
+                                       <i class="fas fa-check"></i>
+                                    </a>
                                 </h:form>
                             </div>
                         </div>
