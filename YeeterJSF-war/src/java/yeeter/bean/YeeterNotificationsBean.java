@@ -25,7 +25,7 @@ import yeeterapp.entity.Usuario;
 @Named(value = "yeeterNotificationsBean")
 @RequestScoped
 public class YeeterNotificationsBean {
-@EJB
+    @EJB
     private PeticionAmistadFacade peticionAmistadFacade;
 
     @EJB
