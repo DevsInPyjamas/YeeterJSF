@@ -6,18 +6,18 @@
     <h:head>
         <title>Facelet Title</title>
         <ui:include src="head.xhtml"/>
-        <link rel="stylesheet" href="../assets/css/navbar.css"/>
+        <link rel="stylesheet" href="/YeeterJSF-war/assets/css/navbar.css"/>
     </h:head>
     <h:body>
         <nav class="yeeter-nav navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-            <h:link styleClass="navbar-brand">Yeeter</h:link>
+            <h:link styleClass="navbar-brand" outcome="welcomepage">Yeeter</h:link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item d-flex align-items-center">
-                        <h:link styleClass="nav-link"><i class="fas fa-bell"></i> Notificaciones<span class="sr-only">(current)</span></h:link>
+                        <h:link styleClass="nav-link" outcome="notificaciones"><i class="fas fa-bell"></i> Notificaciones<span class="sr-only">(current)</span></h:link>
                     </li>
                     <li class="nav-item d-flex align-items-center">
                         <h:link styleClass="nav-link"><i class="fas fa-envelope"></i> Mensajes</h:link>
@@ -54,11 +54,13 @@
                 </ul>
                 <ul class="navbar-nav ml-3">
 	          <li class="nav-item">
-	          	<h:link>
-                            <button class="btn btn-outline-light my-2 my-sm-0">
-                                Logout                                
-                            </button>
-                        </h:link>
+                      <h:form>
+                            <h:commandLink action="#{yeeterSessionBean.doRemoveLoggedUser()}">
+                                <button class="btn btn-outline-light my-2 my-sm-0">
+                                    Logout                                
+                                </button>
+                            </h:commandLink>
+                        </h:form>
 	          </li>
                 </ul>
             </div>
