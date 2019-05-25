@@ -32,6 +32,7 @@ public class ChatBean {
     protected Usuario usuario;
     protected Usuario amigoChat;
     protected String message;
+    protected Mensaje mensaje;
     
     /**
      * Creates a new instance of ChatBean
@@ -70,14 +71,27 @@ public class ChatBean {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public Mensaje getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(Mensaje mensaje) {
+        this.mensaje = mensaje;
+    }
     
     @PostConstruct
     public void init(){
         this.usuario = this.sessionBean.getLoggedUserObject();
-        this.mensajes = this.mensajeFacade.queryMensajesAmigos(usuario.getId(), amigoChat.getId());
     }
     
-    public String doEnviar() {
+    public String doCrearChat(Usuario amigo) {
+        this.setAmigoChat(amigo);
+        this.mensajes = this.mensajeFacade.queryMensajesAmigos(usuario.getId(), amigoChat.getId());
+        return "chat";
+    }
+    
+    public String doEnviarMensaje(){
         return "chat";
     }
 }
