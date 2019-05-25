@@ -24,18 +24,33 @@
                         </h:form>
                     </nav>
                     <ui:repeat value="#{yeeterNotificationsBean.notificationsList}" var="notification">
-                        <div class="card mt-2 mb-2 #{ !notificacion.getNotificacionLeida() ? 'not-read' : ''}"
-                             onClick="location.href='yeeter/#{notificacion.getLink()}';" style="cursor: pointer;">                
+                        <div class="card mt-2 mb-2 #{ !notification.notificacionLeida ? 'not-read' : ''}"
+                             onClick="location.href='yeeter/#{notification.link}';" style="cursor: pointer;">                
                             <div class="card-body row align-items-center">
                                 <div class="col-11 ">
-                                    Bool: #{notificacion.getNotificacionLeida()}<br/>
-                                    Link: #{notificacion.getLink()}
-                                    <br/>
                                     #{notification.contenido}                                    
                                 </div>
-                                <h:form rendered="#{ !notificacion.getNotificacionLeida()}">
+                                <h:form rendered="#{ !notification.notificacionLeida}">
                                     <h:commandButton styleClass="btn btn-outline-info btn-sm"
                                         action="#{yeeterNotificationsBean.doReadNotification(notification.id)}">
+                                        <i class="fas fa-check"></i>
+                                    </h:commandButton>
+                                </h:form>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                    
+                    <ui:repeat value="#{yeeterNotificationsBean.peticionesAmistadList}" var="peticion">
+                        <div class="card mt-2 mb-2 not-read"
+                             onClick="location.href='/yeeter/';" style="cursor: pointer;">                
+                            <div class="card-body row align-items-center">
+                                <div class="col-11 ">
+                                    <br/>
+                                    #{peticion.mensaje}                                    
+                                </div>
+                                <h:form>
+                                    <h:commandButton styleClass="btn btn-outline-info btn-sm"
+                                                     action="#{yeeterNotificationsBean.doAcceptFriendRequest(peticion.peticionAmistadPK)}">
                                         <i class="fas fa-check"></i>
                                     </h:commandButton>
                                 </h:form>

@@ -16,6 +16,7 @@ import yeeterapp.ejb.NotificacionesFacade;
 import yeeterapp.ejb.PeticionAmistadFacade;
 import yeeterapp.entity.Notificaciones;
 import yeeterapp.entity.PeticionAmistad;
+import yeeterapp.entity.PeticionAmistadPK;
 import yeeterapp.entity.Usuario;
 
 /**
@@ -98,7 +99,7 @@ public class YeeterNotificationsBean {
         return null;
     }
     
-    public String doAcceptFriendRequest(int id) {
+    public String doAcceptFriendRequest(PeticionAmistadPK id) {
         
         return null;
     }
