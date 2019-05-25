@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <ui:include src="WEB-INF/navbar.xhtml"/>
+    </h:head>
+    <h:body>
+        <div class="container mb-5">
+            <div class="row">
+
+                <div class="col-3">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"> 
+                             #{welcomePageBean.loggedUser.username}
+                            </h5>
+                            <p class="card-text">
+                            <div class="row overview">
+                                <div class="col-md-6 user-pad text-center">
+                                    <h5>Yeets</h5>
+                                    <h6>
+                                       #{welcomePageBean.loggedUser.postList.size()}
+                                    </h6>
+                                </div>
+                                <div class="col-md-6 user-pad text-center">
+                                    <h5>Amigos</h5>
+                                    <h6>  #{welcomePageBean.loggedUser.usuarioList1.size()} </h6>
+                                </div>
+
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-7">
+                    <ui:repeat value= "#{welcomePageBean.listaPost}" var="post">
+                            <h:form>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">#{welcomePageBean.distinguir(post)}
+                                    </h5>
+                                    <p class="card-text"> #{post.contenido}</p>
+
+                                    <footer > #{post.fechaPublicacion} </footer>
+                                </div>
+                            </div>
+                            </h:form>
+                    </ui:repeat>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
