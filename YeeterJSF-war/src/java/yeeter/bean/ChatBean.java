@@ -5,10 +5,14 @@
  */
 package yeeter.bean;
 
+import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import yeeterapp.ejb.MensajeFacade;
+import yeeterapp.entity.Mensaje;
 import yeeterapp.entity.Usuario;
 
 /**
@@ -18,14 +22,45 @@ import yeeterapp.entity.Usuario;
 @Named(value = "chatBean")
 @RequestScoped
 public class ChatBean {
+    @EJB
+    private MensajeFacade mensajeFacade;
+    
     @Inject
     private YeeterSessionBean sessionBean;
     
-    private Usuario usuario;
+    protected List<Mensaje> mensajes;     
+    protected Usuario usuario;
+    protected Usuario amigoChat;
+    protected String message;
+    
     /**
      * Creates a new instance of ChatBean
      */
     public ChatBean() {
+    }
+
+    public List<Mensaje> getMensajes() {
+        return mensajes;
+    }
+
+    public void setMensajes(List<Mensaje> mensajes) {
+        this.mensajes = mensajes;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Usuario getAmigoChat() {
+        return amigoChat;
+    }
+
+    public void setAmigoChat(Usuario amigoChat) {
+        this.amigoChat = amigoChat;
     }
 
     public Usuario getUsuario() {
@@ -39,9 +74,10 @@ public class ChatBean {
     @PostConstruct
     public void init(){
         this.usuario = this.sessionBean.getLoggedUserObject();
+        this.mensajes = this.mensajeFacade.queryMensajesAmigos(usuario.getId(), amigoChat.getId());
     }
     
-    public String pruebaClick(){
-        return "welcomepage";
+    public String doEnviar() {
+        return "chat";
     }
 }
