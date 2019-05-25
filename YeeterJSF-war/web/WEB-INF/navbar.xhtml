@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
         <nav class="yeeter-nav navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-            <h:link styleClass="navbar-brand">Yeeter</h:link>
+            <h:link styleClass="navbar-brand" outcome="welcomepage">Yeeter</h:link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,22 +23,21 @@
                         <h:link styleClass="nav-link"><i class="fas fa-envelope"></i> Mensajes</h:link>
                     </li>
                     <li class="nav-item d-flex align-items-center">
-                        <h:link styleClass="nav-link"><i class="fas fa-users"></i> Grupos</h:link>
+                        <h:link outcome = "listagrupos" styleClass="nav-link"><i class="fas fa-users"></i> Grupos</h:link>
                     </li>
                 </ul>
-                <form class="form-inline" action="BuscarAmigos">
-                    <input name = "busqueda" class="form-control mr-sm-2" type="search" placeholder="Buscar Amigos" aria-label="Search"></input>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-light" style="height: 38px; width: 50px;" type="submit" >
-                            <span style="width: 25px; height: 25px; display:inline-block;">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </button>
-                    </div>
-                </form>
                 <ul class="navbar-nav ml-3">
                     <li class="nav-item">
-                        <h:link styleClass="nav-link" outcome="profilePanel"><i class="fas fa-user"></i> Perfil</h:link>
+                        <h:link outcome = "buscaramigo">
+                            <button class="btn btn-outline-light my-2 my-sm-0">
+                                <span class="fa-stack" style="width: 25px; height: 25px;">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </h:link>
+                    </li>
+                    <li class="nav-item">
+                        <h:link styleClass="nav-link"><i class="fas fa-user"></i> Perfil</h:link>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-3">
@@ -58,14 +57,13 @@
                       <h:form>
                             <h:commandLink action="#{yeeterSessionBean.doRemoveLoggedUser()}">
                                 <button class="btn btn-outline-light my-2 my-sm-0">
-                                    Logout                                
+                                    Logout
                                 </button>
                             </h:commandLink>
                         </h:form>
 	          </li>
                 </ul>
             </div>
-        </nav>    
+        </nav>
     </h:body>
 </html>
-
