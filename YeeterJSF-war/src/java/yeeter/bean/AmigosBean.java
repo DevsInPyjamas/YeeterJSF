@@ -34,6 +34,7 @@ public class AmigosBean implements Serializable {
     @Inject YeeterSessionBean sessionBean;
     protected List<Usuario> listaCoincidencias;
     protected String busqueda;
+    protected String message;
 
     /**
      * Creates a new instance of AmigosBean
@@ -56,6 +57,19 @@ public class AmigosBean implements Serializable {
     public void setListaCoincidencias(List<Usuario> listaCoincidencias) {
         this.listaCoincidencias = listaCoincidencias;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    @PostConstruct
+    public void init(){
+        this.listaCoincidencias = usuarioFacade.findAll();
+    }
     
     public String searchCoincidences(String busqueda){
         this.listaCoincidencias = usuarioFacade.queryUserByUsernameOrName(busqueda);
@@ -72,7 +86,10 @@ public class AmigosBean implements Serializable {
         pet.setMensaje("El usuario "+ sessionBean.getLoggedUserObject().getUsername() + " quiere añadirte como amigo.");
         peticionFacade.create(pet);
         
-        return searchCoincidences("");
+        this.message = "La solicitud de amistad se ha enviado con exito";
+        this.init();
+        
+        return "buscaramigo";
     }
     
     public boolean noAmigo(Usuario usuario1, Usuario usuario2){

@@ -13,19 +13,24 @@ and open the template in the editor.
         <title>Yeeter - Buscar Amigo</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
-    <h:body>
+    <h:body class = "text-center">
+        <ui:fragment rendered="#{amigosBean.message != null}">
+            <div class="alert alert-success">
+                #{amigosBean.message}
+            </div>
+        </ui:fragment>
         <h:form>
             <h:inputText id = "search" value = "#{amigosBean.busqueda}"></h:inputText>
-            <div class="input-group-append">
-                <h:commandButton action = "#{amigosBean.searchCoincidences(amigosBean.busqueda)}">
+            <h:commandLink action = "#{amigosBean.searchCoincidences(amigosBean.busqueda)}">
+                <button class="btn btn-outline-dark">
                     <span style="width: 25px; height: 25px; display:inline-block;">
                         <i class="fas fa-search"></i>
                     </span>
-                </h:commandButton>
-            </div>
+                </button>
+            </h:commandLink>
         </h:form>
         <h:form>
-        <h:dataTable value="#{amigosBean.listaCoincidencias}" var = "coincidencia">
+        <h:dataTable class = "table" value="#{amigosBean.listaCoincidencias}" var = "coincidencia">
             <h:column>
                 <f:facet name = "header">NOMBRE</f:facet>
                 #{coincidencia.nombre}
@@ -40,8 +45,13 @@ and open the template in the editor.
             </h:column>
             <h:column>
                 <f:facet name = "header"></f:facet>
-                <h:commandButton action="#{amigosBean.doAddFriend(coincidencia)}"
-                                 rendered = "#{amigosBean.noAmigo(yeeterSessionBean.loggedUserObject, coincidencia) and !yeeterSessionBean.loggedUserObject.equals(coincidencia)}" value="Añadir" />
+                <h:commandLink action="#{amigosBean.doAddFriend(coincidencia)}" rendered = "#{amigosBean.noAmigo(yeeterSessionBean.loggedUserObject, coincidencia) and !yeeterSessionBean.loggedUserObject.equals(coincidencia)}">
+                    <button class="btn btn-outline-dark">
+                        <span class="fa-stack" style="width: 25px; height: 25px;">
+                            <i class="fas fa-user-plus"></i>
+                        </span>
+                    </button>
+                </h:commandLink>
             </h:column>
         </h:dataTable>
         </h:form>

@@ -22,11 +22,13 @@ and open the template in the editor.
                 <p>#{gruposBean.grupoSeleccionado.descripcion}</p>
             </div>
             <div class="card mt-1 mb-1">
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text"></p>
-                    <footer ></footer>
-                </div>
+                <ui:repeat value="#{gruposBean.grupoSeleccionado.postList}" var="post">
+                    <div class="card-body">
+                        <h5 class="card-title">#{post.idAutor.username}</h5>
+                        <p class="card-text">#{post.contenido}</p>
+                        <footer >#{post.fechaPublicacion}</footer>
+                    </div>
+                </ui:repeat>
             </div>
         </div>
     </body>
