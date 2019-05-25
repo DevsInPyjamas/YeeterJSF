@@ -96,5 +96,10 @@ public class YeeterNotificationsBean {
         notificacionesFacade.edit(notificacion);
         this.init();
         return null;
-    }  
+    }
+    
+    public String doAcceptFriendRequest(int id) {
+        
+        return null;
+    }
 }

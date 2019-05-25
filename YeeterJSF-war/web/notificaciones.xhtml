@@ -24,10 +24,14 @@
                         </h:form>
                     </nav>
                     <ui:repeat value="#{yeeterNotificationsBean.notificationsList}" var="notification">
-                        <div class="card mt-2 mb-2 #{ !notificacion.getNotificacionLeida() ? 'not-read' : ''}">                
+                        <div class="card mt-2 mb-2 #{ !notificacion.getNotificacionLeida() ? 'not-read' : ''}"
+                             onClick="location.href='yeeter/#{notificacion.getLink()}';" style="cursor: pointer;">                
                             <div class="card-body row align-items-center">
                                 <div class="col-11 ">
-                                    #{notification.contenido}
+                                    Bool: #{notificacion.getNotificacionLeida()}<br/>
+                                    Link: #{notificacion.getLink()}
+                                    <br/>
+                                    #{notification.contenido}                                    
                                 </div>
                                 <h:form rendered="#{ !notificacion.getNotificacionLeida()}">
                                     <h:commandButton styleClass="btn btn-outline-info btn-sm"
