@@ -20,6 +20,7 @@ import yeeterapp.entity.Usuario;
 public class WelcomePageBean {
     
     @Inject YeeterSessionBean sessionBean;
+    @Inject ProfileBean profileBean;
     Usuario loggedUser;
 
     /**
@@ -41,6 +42,10 @@ public class WelcomePageBean {
         this.loggedUser = loggedUser;
     }
     
-    
+    public String doRedirectToProfile() {
+        profileBean.setUsuarioSeleccionado(loggedUser);
+        this.profileBean.updateData();
+        return "profilePanel";
+    }
     
 }
