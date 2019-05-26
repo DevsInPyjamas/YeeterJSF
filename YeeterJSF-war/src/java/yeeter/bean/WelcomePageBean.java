@@ -33,6 +33,7 @@ public class WelcomePageBean {
     
     
     @Inject YeeterSessionBean sessionBean;
+    @Inject ProfileBean profileBean;
     Usuario loggedUser;
     List<Post> listaPost;
 
@@ -76,6 +77,10 @@ public class WelcomePageBean {
     
    
     
-    
+    public String doRedirectToProfile() {
+        profileBean.setUsuarioSeleccionado(loggedUser);
+        this.profileBean.updateData();
+        return "profilePanel";
+    }
     
 }

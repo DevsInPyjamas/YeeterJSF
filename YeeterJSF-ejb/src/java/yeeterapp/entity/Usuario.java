@@ -123,7 +123,7 @@ public class Usuario implements Serializable {
     public Usuario(Integer id) {
         this.id = id;
     }
-
+    
     public Usuario(Integer id, String correo, String password, String nombre, String apellidos, Date fechaNacimiento, String username) {
         this.id = id;
         this.correo = correo;
