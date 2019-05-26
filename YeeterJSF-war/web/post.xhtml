@@ -18,20 +18,15 @@ and open the template in the editor.
             <div class="card mt-5">
                 <div class="card-body">
                     <div class="card-body">
-                        <h3 class="card-title">
-                            <ui:fragment rendered = "#{!postBean.isPublic()}">
-                                Posted in group #{postBean.post.idGrupo.nombre} by 
-                            </ui:fragment>
-                            #{postBean.post.idAutor.username}
-                        </h3>
-                        <p class="card-text">#{postBean.post.contenido}</p>
-                        <footer >#{postBean.post.fechaPublicacion}</footer>
+                        <h3 class="card-title">#{postViewBean.distinguir()}</h3>
+                        <p class="card-text">#{postViewBean.post.contenido}</p>
+                        <footer >#{postViewBean.post.fechaPublicacion}</footer>
                     </div>
                 </div>
             </div>
             <div class="mt-1 mb-1">
                 <div class="card">
-                    <ui:repeat value="#{postBean.post.comentarioList}" var="com">
+                    <ui:repeat value="#{postViewBean.post.comentarioList}" var="com">
                         <div class="card-body">
                             <h5 class="card-title">#{com.autor.username}</h5>
                             <p class="card-text">#{com.contenido}</p>
@@ -40,6 +35,13 @@ and open the template in the editor.
                     </ui:repeat>
                 </div>
             </div>
+            <h:form>
+                <h:inputTextarea value="#{comentarioBean.com.contenido}" required="" cols="10"></h:inputTextarea><br/>
+                <div class="btn-group" role="group">
+                    <h:commandButton class="btn btn-lg btn-outline-info btn-block" value="Comentar"
+                                     action="#{comentarioBean.createComment()}" />
+                </div>
+            </h:form>
         </div>
     </body>
 </html>

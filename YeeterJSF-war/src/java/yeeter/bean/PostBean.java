@@ -86,13 +86,4 @@ public class PostBean {
         this.postFacade.create(post);
         return "welcomepage";
     }
-
-    public String choosePost(Post post){
-        this.setPost(post);
-        return "post";
-    }
-
-    public boolean isPublic(){
-        return this.post.getIdGrupo() == null;
-    }
 }
