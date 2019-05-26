@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <ui:include src="WEB-INF/navbar.xhtml"/>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-9">
+                    <ui:fragment rendered="#{chatBean.message != null}">
+                        <div class="alert alert-success">
+                            #{chatBean.message}
+                        </div>
+                    </ui:fragment>
+                    <nav class="navbar navbar-dark bg-dark mb-5">
+                        <span class="navbar-brand">Chat con #{chatBean.amigoChat.username}</span>
+                    </nav>
+                    <ui:fragment rendered="#{chatBean.mensajes.isEmpty()}">
+                        <div class="alert alert-warning mb-4">
+                            No hay mensajes con este usuario
+                        </div>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{!chatBean.mensajes.isEmpty()}">
+                        <ui:repeat value="#{chatBean.mensajes}" var="mensaje">
+                            <div class="row">
+                                <ui:fragment rendered="#{!mensaje.idEmisor.equals(chatBean.amigoChat)}">
+                                    <div class="col-6"></div>
+                                </ui:fragment>
+                                <div class="card col-6 w-100 mt-1 mb-1">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <ui:fragment rendered="#{!mensaje.idEmisor.equals(chatBean.amigoChat)}">
+                                                Yo:
+                                            </ui:fragment>
+                                            <ui:fragment rendered="#{mensaje.idEmisor.equals(chatBean.amigoChat)}">
+                                                #{chatBean.amigoChat.username}:
+                                            </ui:fragment>
+                                        </h5>
+                                        <p class="card-text">
+                                            #{mensaje.contenido}
+                                        </p>
+                                        <p class="card-text" align="right">
+                                            <small class="text-muted">
+                                                #{mensaje.fecha.hours}:#{mensaje.fecha.minutes} - #{mensaje.fecha.day}/#{mensaje.fecha.month}/#{mensaje.fecha.year}
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </ui:repeat>
+                    </ui:fragment>
+                    <h:form>
+                        <h:inputTextarea value="#{chatBean.mensaje.contenido}" rows="5" cols="195"></h:inputTextarea><br/>
+                        <div class="btn-group" role="group">
+                            <h:commandButton class="btn btn-lg btn-outline-info btn-block" 
+                                             value="Enviar" action="#{chatBean.doEnviarMensaje()}" /><br/>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

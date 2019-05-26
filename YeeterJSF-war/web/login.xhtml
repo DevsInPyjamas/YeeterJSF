@@ -13,20 +13,15 @@
         <div class="body-container">
             <div class="container d-flex justify-content-center" style="align-items: center;">
                 <div style="width: 250px;">
-                    <ui:fragment rendered="#{yeeterLoginBean.messageRegister != null}">
-                        <div class="alert alert-success">
-                            #{yeeterLoginBean.messageRegister}
-                        </div>
-                    </ui:fragment>
                     <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
                     <h:form class="form-login-container">
                         <label for="inputEmail" class="sr-only">Email address</label>
-                        <h:inputText value="#{yeeterLoginBean.email}" 
-                                     styleClass="form-control #{( yeeterLoginBean.isEmailError() ) ? 'is-invalid' : ''}" 
+                        <h:inputText value="#{yeeterLoginBean.email}"
+                                     styleClass="form-control #{( yeeterLoginBean.isEmailError() ) ? 'is-invalid' : ''}"
                                      p:placeholder="Email"/>
                         <label for="inputPassword" class="sr-only">Password</label>
-                        <h:inputSecret value="#{yeeterLoginBean.password}" 
-                                       styleClass="form-control #{( yeeterLoginBean.isPasswordError() ) ? 'is-invalid' : ''}" 
+                        <h:inputSecret value="#{yeeterLoginBean.password}"
+                                       styleClass="form-control #{( yeeterLoginBean.isPasswordError() ) ? 'is-invalid' : ''}"
                                        p:placeholder="Password"/>
                         <div class="checkbox mb-3 mt-3">
                             <ui:fragment rendered="#{yeeterLoginBean.error != null}">
@@ -39,8 +34,8 @@
                         <div class="btn-group" role="group">
                             <h:commandButton action="register"  styleClass="btn btn-lg btn-outline-secondary"
                                              value="Registrarse"/>
-                            <h:commandButton value="Entrar" 
-                                             class="btn btn-lg btn-outline-info btn-block" 
+                            <h:commandButton value="Entrar"
+                                             class="btn btn-lg btn-outline-info btn-block"
                                              action="#{yeeterLoginBean.doLogin()}"/>
                         </div>
                     </h:form>
@@ -49,4 +44,3 @@
         </div>
     </h:body>
 </html>
-
