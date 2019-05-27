@@ -7,10 +7,13 @@ package yeeter.bean;
 
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import yeeterapp.ejb.GrupoFacade;
 import yeeterapp.entity.Grupo;
 import yeeterapp.entity.Post;
 
@@ -21,11 +24,15 @@ import yeeterapp.entity.Post;
 @Named(value = "gruposBean")
 @RequestScoped
 public class GruposBean implements Serializable {
-    
+
+    @EJB
+    private GrupoFacade grupoFacade;
+
     @Inject YeeterSessionBean sessionBean;
     @Inject PostViewBean postViewBeen;
     List<Grupo> listaGrupos;
     Grupo grupoSeleccionado;
+    Grupo nuevoGrupo;
 
     /**
      * Creates a new instance of GruposBean
@@ -48,20 +55,38 @@ public class GruposBean implements Serializable {
     public void setGrupoSeleccionado(Grupo grupoSeleccionado) {
         this.grupoSeleccionado = grupoSeleccionado;
     }
-    
+
+    public Grupo getNuevoGrupo() {
+        return nuevoGrupo;
+    }
+
+    public void setNuevoGrupo(Grupo nuevoGrupo) {
+        this.nuevoGrupo = nuevoGrupo;
+    }
+
     @PostConstruct
     public void init(){
         listaGrupos = sessionBean.getLoggedUserObject().getGrupoList();
         listaGrupos.addAll(sessionBean.getLoggedUserObject().getGrupoList1());
     }
-    
+
     public String chooseGroup(Grupo grupo){
         this.setGrupoSeleccionado(grupo);
         return "grupo";
     }
-    
+
     public String choosePost(Post post){
-        this.postViewBeen.setPost(post); 
+        this.postViewBeen.setPost(post);
         return "post";
+    }
+
+    public String doCrearGrupo() {
+        nuevoGrupo = new Grupo();
+        this.nuevoGrupo.setIdCreador(sessionBean.getLoggedUserObject());
+        Date date = new java.util.Date(System.currentTimeMillis());
+        this.nuevoGrupo.setFechaCreacion(date);
+        this.grupoFacade.create(nuevoGrupo);
+        this.init();
+        return "listagrupos";
     }
 }

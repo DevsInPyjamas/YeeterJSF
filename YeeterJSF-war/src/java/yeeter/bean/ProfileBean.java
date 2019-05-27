@@ -137,7 +137,7 @@ public class ProfileBean implements Serializable {
     }
     
     public boolean existePeticionYa(){
-        return this.sessionBean.getLoggedUserObject().getPeticionAmistadList().contains(new PeticionAmistad(sessionBean.getIdLoggedUser(), usuarioSeleccionado.getId()));
+        return this.sessionBean.getLoggedUserObject().getPeticionAmistadList1().contains(new PeticionAmistad(usuarioSeleccionado.getId(), sessionBean.getIdLoggedUser()));
     }
     
     public void updateData() {

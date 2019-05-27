@@ -5,16 +5,14 @@
  */
 package yeeter.bean;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import yeeterapp.ejb.MensajeFacade;
-import yeeterapp.ejb.UsuarioFacade;
 import yeeterapp.entity.Mensaje;
 import yeeterapp.entity.Usuario;
 
@@ -25,10 +23,6 @@ import yeeterapp.entity.Usuario;
 @Named(value = "conversacionesBean")
 @Dependent
 public class ConversacionesBean {
-
-    @EJB
-    private UsuarioFacade usuarioFacade;
-
     @EJB
     private MensajeFacade mensajeFacade;
 
@@ -38,7 +32,7 @@ public class ConversacionesBean {
 
     List<Mensaje> listaMensajesSiendoEmisor;
     List<Mensaje> listaMensajesSiendoReceptor;
-    Set<Usuario> listaConversaciones = new HashSet<>();
+    List<Usuario> listaConversaciones;
 
     /**
      * Creates a new instance of ConversacionesBean
@@ -48,6 +42,7 @@ public class ConversacionesBean {
     
     @PostConstruct
     public void init() {
+        this.listaConversaciones = new ArrayList<>();
         this.loggedUser = sessionBean.getLoggedUserObject();
         this.listaMensajesSiendoEmisor = this.mensajeFacade.queryfindByEmisor(loggedUser);
         this.listaMensajesSiendoReceptor = this.mensajeFacade.queryfindByReceptor(loggedUser);
@@ -70,22 +65,19 @@ public class ConversacionesBean {
         this.listaMensajesSiendoReceptor = listaMensajesSiendoReceptor;
     }
 
-    
-
-    public Set<Usuario> getListaConversaciones() {
+    public List<Usuario> getListaConversaciones() {
         for (Mensaje mn : listaMensajesSiendoEmisor) {
-            this.listaConversaciones.add(mn.getIdReceptor());
+            if(!listaConversaciones.contains(mn.getIdReceptor()))
+                this.listaConversaciones.add(mn.getIdReceptor());
         }
-        for (Mensaje mensa : listaMensajesSiendoReceptor) {
-            this.listaConversaciones.add(mensa.getIdEmisor());
-        }
-        if (listaConversaciones.isEmpty()) {
-            listaVacia();
+        for (Mensaje mn : listaMensajesSiendoReceptor) {
+            if(!listaConversaciones.contains(mn.getIdEmisor()))
+                this.listaConversaciones.add(mn.getIdEmisor());
         }
         return listaConversaciones;
     }
 
-    public void setListaConversaciones(Set<Usuario> listaConversaciones) {
+    public void setListaConversaciones(List<Usuario> listaConversaciones) {
         this.listaConversaciones = listaConversaciones;
     }
 
@@ -95,9 +87,5 @@ public class ConversacionesBean {
 
     public void setLoggedUser(Usuario loggedUser) {
         this.loggedUser = loggedUser;
-    }
-
-    public String listaVacia() {
-        return " No hay conversaciones disponibles";
     }
 }

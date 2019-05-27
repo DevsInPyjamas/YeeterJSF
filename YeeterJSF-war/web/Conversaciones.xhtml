@@ -17,11 +17,10 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-7">
                     <ui:repeat value= "#{conversacionesBean.listaConversaciones}" var="user">
-                                     
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    @#{user.username}
+                                    #{user.username}
                                 </h5>
                                 <p class="card-text"></p>
                                 <h:form>
