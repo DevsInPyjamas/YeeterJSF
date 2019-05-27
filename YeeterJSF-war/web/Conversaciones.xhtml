@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Conversaciones</title>
+        <ui:include src="WEB-INF/navbar.xhtml"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-7">
+                    <ui:repeat value= "#{conversacionesBean.listaConversaciones}" var="user">
+                                     
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    @#{user.username}
+                                </h5>
+                                <p class="card-text"></p>
+                                <h:form>
+                                    <h:commandButton action = "#{chatBean.doCrearChat(user)}" value = "Accedeer a Conversacion" class="btn btn-outline-secondary float-right" />
+                                </h:form>
+                            </div>
+                        </div>
+                </ui:repeat>
+                </div>
+                <div class="col-3">
+
+                    <h:form>
+                        <h:link outcome="newChat" value = "Nueva Conversacion" class="btn btn-info btn-lg"/>
+                    </h:form>
+
+                </div>
+            </div>
+
+        </div>
+    </h:body>
+</html>
