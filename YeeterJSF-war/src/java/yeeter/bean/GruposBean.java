@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import yeeterapp.entity.Grupo;
+import yeeterapp.entity.Post;
 
 /**
  *
@@ -22,6 +23,7 @@ import yeeterapp.entity.Grupo;
 public class GruposBean implements Serializable {
     
     @Inject YeeterSessionBean sessionBean;
+    @Inject PostViewBean postViewBeen;
     List<Grupo> listaGrupos;
     Grupo grupoSeleccionado;
 
@@ -50,10 +52,16 @@ public class GruposBean implements Serializable {
     @PostConstruct
     public void init(){
         listaGrupos = sessionBean.getLoggedUserObject().getGrupoList();
+        listaGrupos.addAll(sessionBean.getLoggedUserObject().getGrupoList1());
     }
     
     public String chooseGroup(Grupo grupo){
         this.setGrupoSeleccionado(grupo);
         return "grupo";
+    }
+    
+    public String choosePost(Post post){
+        this.postViewBeen.setPost(post); 
+        return "post";
     }
 }

@@ -5,8 +5,10 @@
  */
 package yeeter.bean;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import yeeterapp.entity.Post;
 
 /**
@@ -33,9 +35,9 @@ public class PostViewBean {
         this.post = post;
     }
     
-    public String choosePost(Post p){
-        this.setPost(p);
-        return "post";
+    @PostConstruct
+    public void init(){
+        
     }
 
     public boolean isPublic(){
