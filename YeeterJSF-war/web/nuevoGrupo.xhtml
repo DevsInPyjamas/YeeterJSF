@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Nuevo Grupo</title>
+        <ui:include src="WEB-INF/navbar.xhtml"/>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-9">
+                    <h:form>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Nombre del Grupo </label>
+                            <div class="col-sm-7">
+                                <h:inputText class="form-control" required="" value="#{gruposBean.nuevoGrupo.nombre}" ></h:inputText>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Descripción </label>
+                            <div class="col-sm-7">
+                                <h:inputTextarea class="form-control" value="#{gruposBean.nuevoGrupo.descripcion}" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <div class="btn-group" >
+                                    <h:commandButton action="#{gruposBean.doCrearGrupo()}" value="Crear grupo" class="btn btn-outline-info"/>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

@@ -65,6 +65,7 @@ public class GruposBean implements Serializable {
     @PostConstruct
     public void init(){
         listaGrupos = sessionBean.getLoggedUserObject().getGrupoList();
+        nuevoGrupo = new Grupo();
     }
     
     public String chooseGroup(Grupo grupo){
@@ -77,6 +78,7 @@ public class GruposBean implements Serializable {
         Date date = new java.util.Date(System.currentTimeMillis());
         this.nuevoGrupo.setFechaCreacion(date);
         this.grupoFacade.create(nuevoGrupo);
-        return "listaGrupos";
+        this.init();
+        return "listagrupos";
     }
 }
