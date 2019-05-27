@@ -45,8 +45,6 @@ public class ChatBean {
     protected Usuario usuario;
     protected Usuario amigoChat;
     protected String message;
-    protected Mensaje mensaje;
-    protected Notificaciones notificaciones;
     
     /**
      * Creates a new instance of ChatBean
@@ -85,46 +83,15 @@ public class ChatBean {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    public Mensaje getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(Mensaje mensaje) {
-        this.mensaje = mensaje;
-    }
     
     @PostConstruct
     public void init(){
         this.usuario = this.sessionBean.getLoggedUserObject();
-        this.mensaje = new Mensaje();
-        this.notificaciones = new Notificaciones();
     }
     
     public String doCrearChat(Usuario amigo) {
         this.setAmigoChat(amigo);
         this.mensajes = this.mensajeFacade.queryMensajesAmigos(usuario.getId(), amigoChat.getId());
-        return "chat";
-    }
-    
-    public String doEnviarMensaje(){
-        mensaje.setIdEmisor(usuario);
-        mensaje.setIdReceptor(amigoChat);
-        Date fecha = new Date(System.currentTimeMillis());
-        mensaje.setFecha(fecha);
-       notificaciones = new Notificaciones();
-         notificaciones.setContenido("El usuario " + usuario.getUsername() + " te ha enviado un mensaje");     
-        notificaciones.setLink("");
-        notificaciones.setIdUsuario(amigoChat);
-        
-       List<Notificaciones> l = amigoChat.getNotificacionesList();
-        
-        notificacionesFacade.create(notificaciones);
-        l.add(notificaciones);
-        usuarioFacade.edit(amigoChat);
-        
-        mensajeFacade.create(mensaje);
-        
         return "chat";
     }
 }
