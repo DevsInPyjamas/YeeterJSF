@@ -33,8 +33,7 @@
                         </h:form>
                     </nav>
                     <ui:repeat value="#{yeeterNotificationsBean.notificationsList}" var="notification">
-                        <div class="card mt-2 mb-2 #{ !notification.notificacionLeida ? 'not-read' : ''}"
-                             onClick="location.href='yeeter/#{notification.link}';" style="cursor: pointer;">                
+                        <div class="card mt-2 mb-2 #{ !notification.notificacionLeida ? 'not-read' : ''}">                
                             <div class="card-body row align-items-center">
                                 <div class="col-10">
                                     #{notification.contenido}                                    

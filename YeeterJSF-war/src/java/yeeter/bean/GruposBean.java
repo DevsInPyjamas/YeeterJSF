@@ -6,22 +6,21 @@
 package yeeter.bean;
 
 import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import yeeterapp.entity.Grupo;
 
 /**
  *
- * @author jugr9
+ * @author alec
  */
 @Named(value = "gruposBean")
-@RequestScoped
+@SessionScoped
 public class GruposBean implements Serializable {
-    
-    @Inject YeeterSessionBean sessionBean;
+@Inject YeeterSessionBean sessionBean;
     List<Grupo> listaGrupos;
     Grupo grupoSeleccionado;
 
@@ -61,7 +60,4 @@ public class GruposBean implements Serializable {
         return grupoSeleccionado.getIdCreador().equals(sessionBean.getLoggedUserObject());
     }
     
-    public String doRedirectToListMembers() {
-        this.
-    }
 }

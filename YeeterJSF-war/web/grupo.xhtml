@@ -13,24 +13,28 @@ and open the template in the editor.
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </head>
     <body>
-        <div class = "container">
-            <div class = "bot_grupos">
-                <nav class="navbar navbar-dark bg-dark">
-                    <span class="navbar-brand">#{gruposBean.grupoSeleccionado.nombre}</span>
-                    <h:form>
-                        <h:commandLink styleClass="navbar-brand btn btn-outline-info"
-                                       action="#{gruposBean.doRedirectToListMembers}">
-                            Lista de Miembros
-                        </h:commandLink>
-                    </h:form>
-                </nav>
-                <p>#{gruposBean.grupoSeleccionado.descripcion}</p>
-            </div>
-            <div class="card mt-1 mb-1">
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text"></p>
+        <div class = "container-fluid">
+            <div class = "row">
+                <div class="col"></div>
+                <div class="col-9">
+                    <nav class="navbar navbar-dark bg-dark">
+                        <span class="navbar-brand">#{gruposBean.grupoSeleccionado.nombre}</span>
+                        <h:form>
+                            <h:link styleClass="navbar-brand btn btn-outline-info"
+                                           outcome="membersList">
+                                Lista de Miembros
+                            </h:link>
+                        </h:form>
+                    </nav>
+                    <p>#{gruposBean.grupoSeleccionado.descripcion}</p>
+                    <div class="card mt-1 mb-1">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
                 </div>
+                <div class="col"></div>
             </div>
         </div>
     </body>
