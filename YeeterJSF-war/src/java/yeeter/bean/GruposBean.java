@@ -8,9 +8,11 @@ package yeeter.bean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import yeeterapp.ejb.GrupoFacade;
 import yeeterapp.entity.Grupo;
 
 /**
@@ -20,9 +22,14 @@ import yeeterapp.entity.Grupo;
 @Named(value = "gruposBean")
 @SessionScoped
 public class GruposBean implements Serializable {
-@Inject YeeterSessionBean sessionBean;
+
+    @EJB
+    private GrupoFacade grupoFacade;
+
+    @Inject YeeterSessionBean sessionBean;
     List<Grupo> listaGrupos;
     Grupo grupoSeleccionado;
+    Grupo nuevoGrupo;
 
     /**
      * Creates a new instance of GruposBean
@@ -45,19 +52,32 @@ public class GruposBean implements Serializable {
     public void setGrupoSeleccionado(Grupo grupoSeleccionado) {
         this.grupoSeleccionado = grupoSeleccionado;
     }
-    
+
+    public Grupo getNuevoGrupo() {
+        return nuevoGrupo;
+    }
+
+    public void setNuevoGrupo(Grupo nuevoGrupo) {
+        this.nuevoGrupo = nuevoGrupo;
+    }
+
     @PostConstruct
     public void init(){
         listaGrupos = sessionBean.getLoggedUserObject().getGrupoList();
+        nuevoGrupo = new Grupo();
     }
-    
+
     public String chooseGroup(Grupo grupo){
         this.setGrupoSeleccionado(grupo);
         return "grupo";
     }
-    
-    public boolean isAdmin() {
-        return grupoSeleccionado.getIdCreador().equals(sessionBean.getLoggedUserObject());
+
+    public String doCrearGrupo() {
+        this.nuevoGrupo.setIdCreador(sessionBean.getLoggedUserObject());
+        Date date = new java.util.Date(System.currentTimeMillis());
+        this.nuevoGrupo.setFechaCreacion(date);
+        this.grupoFacade.create(nuevoGrupo);
+        this.init();
+        return "listagrupos";
     }
-    
 }

@@ -8,7 +8,53 @@
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
     <h:body>
-        <h:panelGrid styleClass="alert">#{welcomePageBean.loggedUser.id}</h:panelGrid>
+        <div class="container mb-5">
+            <div class="row">
+
+                <div class="col-3">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"> 
+                             #{welcomePageBean.loggedUser.username}
+                            </h5>
+                            <p class="card-text">
+                            <div class="row overview">
+                                <div class="col-md-6 user-pad text-center">
+                                    <h5>Yeets</h5>
+                                    <h6>
+                                       #{welcomePageBean.loggedUser.postList.size()}
+                                    </h6>
+                                </div>
+                                <div class="col-md-6 user-pad text-center">
+                                    <h5>Amigos</h5>
+                                    <h6>  #{welcomePageBean.loggedUser.usuarioList1.size()} </h6>
+                                </div>
+
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-7">
+                    <ui:repeat value= "#{welcomePageBean.listaPost}" var="post">
+                            <h:form>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">#{welcomePageBean.distinguir(post)}
+                                    </h5>
+                                    <p class="card-text"> #{post.contenido}</p>
+
+                                    <footer > #{post.fechaPublicacion} </footer>
+                                </div>
+                            </div>
+                            </h:form>
+                    </ui:repeat>
+                </div>
+            </div>
+        </div>
     </h:body>
 </html>
 
