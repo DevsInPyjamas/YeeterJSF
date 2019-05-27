@@ -26,6 +26,9 @@ and open the template in the editor.
                     <div class="card-body">
                         <h5 class="card-title">#{post.idAutor.username}</h5>
                         <p class="card-text">#{post.contenido}</p>
+                        <h:form>
+                            <h:commandButton action="#{gruposBean.choosePost(post)}"/>
+                        </h:form>
                         <footer >#{post.fechaPublicacion}</footer>
                     </div>
                 </ui:repeat>

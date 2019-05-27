@@ -20,7 +20,7 @@ and open the template in the editor.
                 <h:dataTable value = "#{gruposBean.listaGrupos}" var = "grupo">
                     <h:column>
                         <f:facet name = "header">GRUPOS</f:facet>
-                        <h:commandLink action="#{gruposBean.chooseGroup(grupo)}" value="#{grupo.nombre}" class="list-group-item list-group-item-action btn-outline-dark"/>
+                        <h:commandButton action="#{gruposBean.chooseGroup(grupo)}" value="#{grupo.nombre}" class="list-group-item list-group-item-action btn-outline-dark"/>
                     </h:column>
                 </h:dataTable>
             </h:form> 

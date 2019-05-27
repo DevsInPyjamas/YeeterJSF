@@ -15,6 +15,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import yeeterapp.ejb.GrupoFacade;
 import yeeterapp.entity.Grupo;
+import yeeterapp.entity.Post;
 
 /**
  *
@@ -26,8 +27,9 @@ public class GruposBean implements Serializable {
 
     @EJB
     private GrupoFacade grupoFacade;
-    
+
     @Inject YeeterSessionBean sessionBean;
+    @Inject PostViewBean postViewBeen;
     List<Grupo> listaGrupos;
     Grupo grupoSeleccionado;
     Grupo nuevoGrupo;
@@ -61,19 +63,25 @@ public class GruposBean implements Serializable {
     public void setNuevoGrupo(Grupo nuevoGrupo) {
         this.nuevoGrupo = nuevoGrupo;
     }
-    
+
     @PostConstruct
     public void init(){
         listaGrupos = sessionBean.getLoggedUserObject().getGrupoList();
-        nuevoGrupo = new Grupo();
+        listaGrupos.addAll(sessionBean.getLoggedUserObject().getGrupoList1());
     }
-    
+
     public String chooseGroup(Grupo grupo){
         this.setGrupoSeleccionado(grupo);
         return "grupo";
     }
-    
+
+    public String choosePost(Post post){
+        this.postViewBeen.setPost(post);
+        return "post";
+    }
+
     public String doCrearGrupo() {
+        nuevoGrupo = new Grupo();
         this.nuevoGrupo.setIdCreador(sessionBean.getLoggedUserObject());
         Date date = new java.util.Date(System.currentTimeMillis());
         this.nuevoGrupo.setFechaCreacion(date);

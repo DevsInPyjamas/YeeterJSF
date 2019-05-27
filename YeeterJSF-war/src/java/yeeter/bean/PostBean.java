@@ -19,7 +19,7 @@ import yeeterapp.entity.Post;
 
 /**
  *
- * @author jesus
+ * @author jesus and jugr9
  */
 @Named(value = "postBean")
 @RequestScoped
@@ -27,13 +27,13 @@ public class PostBean {
 
     @EJB
     private GrupoFacade grupoFacade;
-    
+
     @EJB
     private PostFacade postFacade;
-    
+
     @Inject
     private YeeterSessionBean sessionBean;
-    
+
     protected List<Grupo> grupos;
     protected int selectedGrupo;
     protected Post post;
@@ -43,7 +43,7 @@ public class PostBean {
      */
     public PostBean() {
     }
-    
+
     public Post getPost() {
         return post;
     }
@@ -67,13 +67,13 @@ public class PostBean {
     public void setSelectedGrupo(int selectedGrupo) {
         this.selectedGrupo = selectedGrupo;
     }
-    
+
     @PostConstruct
     public void init() {
         grupos = this.sessionBean.getLoggedUserObject().getGrupoList();
         post = new Post();
     }
-    
+
     public String doNewPost() {
         if (selectedGrupo != -1){
             Grupo grupo = this.grupoFacade.find(this.selectedGrupo);
