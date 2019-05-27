@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <h:head>
         <title>Yeeter - Miembros de #{gruposBean.grupoSeleccionado.nombre}</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>
@@ -21,13 +22,21 @@
                             </h:link>
                         </h:form>
                     </nav>
-                    <ui:repeat value="#{gruposBean.grupoSeleccionado.usuarioList}" var="miembro">
-                        <div class="card mt-2 mb-2">
-                            <div class="card-body row align-items-center">
-                                #{miembro.nombre} #{miembro.apellidos}
+                    <h:form>
+                        <ui:repeat value="#{gruposBean.grupoSeleccionado.usuarioList}" var="miembro">
+                            <div class="card mt-2 mb-2">
+                                <div class="card-body row align-items-center">
+                                    <div class="col-10">
+                                        #{miembro.nombre} #{miembro.apellidos}
+                                    </div>
+                                    <a jsf:action="#{amigosBean.doRedirectToUserProfile(miembro)}" 
+                                       class="btn btn-outline-dark btn-sm mr-2">
+                                        <i class="fas fa-directions"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </ui:repeat>
+                        </ui:repeat>
+                    </h:form>
                 </div>
                 <div class="col"></div>
             </div>           
