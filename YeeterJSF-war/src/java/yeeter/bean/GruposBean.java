@@ -32,8 +32,6 @@ public class GruposBean implements Serializable {
     @Inject PostViewBean postViewBeen;
     List<Grupo> listaGrupos;
     Grupo grupoSeleccionado;
-    Grupo nuevoGrupo;
-
     /**
      * Creates a new instance of GruposBean
      */
@@ -56,18 +54,9 @@ public class GruposBean implements Serializable {
         this.grupoSeleccionado = grupoSeleccionado;
     }
 
-    public Grupo getNuevoGrupo() {
-        return nuevoGrupo;
-    }
-
-    public void setNuevoGrupo(Grupo nuevoGrupo) {
-        this.nuevoGrupo = nuevoGrupo;
-    }
-
     @PostConstruct
     public void init(){
         listaGrupos = sessionBean.getLoggedUserObject().getGrupoList();
-        listaGrupos.addAll(sessionBean.getLoggedUserObject().getGrupoList1());
     }
 
     public String chooseGroup(Grupo grupo){
@@ -80,13 +69,5 @@ public class GruposBean implements Serializable {
         return "post";
     }
 
-    public String doCrearGrupo() {
-        nuevoGrupo = new Grupo();
-        this.nuevoGrupo.setIdCreador(sessionBean.getLoggedUserObject());
-        Date date = new java.util.Date(System.currentTimeMillis());
-        this.nuevoGrupo.setFechaCreacion(date);
-        this.grupoFacade.create(nuevoGrupo);
-        this.init();
-        return "listagrupos";
-    }
+    
 }
