@@ -17,16 +17,25 @@
                     <nav class="navbar navbar-dark bg-dark mb-5">
                         <span class="navbar-brand">Añadir miembro</span>
                     </nav>
-                    <ui:repeat var="miembri" value="#{yeeterAddMemberBean.friendsNotInGroup}">
+                    <ui:component rendered="#{yeeterAddMemberBean.friendsNotInGroup.size() == 0}">
+                        <div class="alert alert-warning">Todos tus amigos se encuentran ya en este grupo!</div>
+                    </ui:component>
+                    <ui:repeat var="miembro" value="#{yeeterAddMemberBean.friendsNotInGroup}">
                         <div class="card mt-2 mb-2">
                                 <div class="card-body row align-items-center">
                                     <div class="col-10">
                                         #{miembro.nombre} #{miembro.apellidos}
                                     </div>
-                                    <a 
-                                       class="btn btn-outline-dark btn-sm mr-2">
-                                        <i class="fas fa-directions"></i>
-                                    </a>
+                                    <h:form>
+                                        <a jsf:action="#{amigosBean.doRedirectToUserProfile(miembro)}"
+                                           class="btn btn-outline-dark btn-sm mr-2">
+                                            <i class="fas fa-user-alt"></i>
+                                        </a>
+                                        <a jsf:action="#{yeeterAddMemberBean.doAddMember(miembro)}"
+                                           class="btn btn-outline-dark">
+                                            <i class="fas fa-user-plus"></i>
+                                        </a>
+                                    </h:form>
                                 </div>
                             </div>
                     </ui:repeat>

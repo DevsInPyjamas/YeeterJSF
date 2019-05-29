@@ -8,9 +8,13 @@ package yeeter.bean;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import yeeterapp.ejb.GrupoFacade;
+import yeeterapp.ejb.UsuarioFacade;
+import yeeterapp.entity.Grupo;
 import yeeterapp.entity.Usuario;
 
 /**
@@ -20,9 +24,17 @@ import yeeterapp.entity.Usuario;
 @Named(value = "yeeterAddMemberBean")
 @RequestScoped
 public class YeeterAddMemberBean {
+
+    @EJB
+    private UsuarioFacade usuarioFacade;
+
+    @EJB
+    private GrupoFacade grupoFacade;
     
     @Inject YeeterSessionBean sessionBean;
     @Inject GruposBean groupsBean;
+    
+    
     
     private List<Usuario> friendsNotInGroup;
 
@@ -46,8 +58,18 @@ public class YeeterAddMemberBean {
     public void init() {
         this.friendsNotInGroup = new ArrayList<>();
         this.sessionBean.getLoggedUserObject().getUsuarioList().forEach(amigo -> {
-            if(!groupsBean.grupoSeleccionado.getUsuarioList().contains(amigo)) friendsNotInGroup.add(amigo);
+            if(!groupsBean.getGrupoSeleccionado().getUsuarioList().contains(amigo)) friendsNotInGroup.add(amigo);
         });
+    }
+    
+    public String doAddMember(Usuario user) {
+        Grupo g = this.groupsBean.getGrupoSeleccionado();
+        g.getUsuarioList().add(user);
+        user.getGrupoList().add(g);
+        this.usuarioFacade.edit(user);
+        this.grupoFacade.edit(g);
+        this.init();
+        return null;
     }
     
 }

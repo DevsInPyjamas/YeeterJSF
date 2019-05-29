@@ -30,8 +30,9 @@ public class GruposBean implements Serializable {
 
     @Inject YeeterSessionBean sessionBean;
     @Inject PostViewBean postViewBeen;
-    List<Grupo> listaGrupos;
-    Grupo grupoSeleccionado;
+    private List<Grupo> listaGrupos;
+    private Grupo grupoSeleccionado;
+    private Grupo nuevoGrupo;
     /**
      * Creates a new instance of GruposBean
      */
@@ -79,6 +80,8 @@ public class GruposBean implements Serializable {
         this.grupoFacade.create(nuevoGrupo);
         this.init();
         return "listagrupos";
+    }
+    
     public String choosePost(Post post){
         this.postViewBeen.setPost(post);
         return "post";

@@ -19,11 +19,11 @@ and open the template in the editor.
                 #{amigosBean.message}
             </div>
         </ui:fragment>
-        <h:form>
+        <h:form class="mb-4">
             <h:inputText id = "search" value = "#{amigosBean.busqueda}"></h:inputText>
             <h:commandLink action = "#{amigosBean.searchCoincidences(amigosBean.busqueda)}">
                 <button class="btn btn-outline-dark">
-                    <span style="width: 25px; height: 25px; display:inline-block;">
+                    <span>
                         <i class="fas fa-search"></i>
                     </span>
                 </button>
@@ -47,7 +47,7 @@ and open the template in the editor.
                 <f:facet name = "header"></f:facet>
                 <h:commandLink action="#{amigosBean.doAddFriend(coincidencia)}" rendered = "#{amigosBean.noAmigo(yeeterSessionBean.loggedUserObject, coincidencia) and !yeeterSessionBean.loggedUserObject.equals(coincidencia)}">
                     <button class="btn btn-outline-dark">
-                        <span class="fa-stack" style="width: 25px; height: 25px;">
+                        <span class="fa-stack">
                             <i class="fas fa-user-plus"></i>
                         </span>
                     </button>
@@ -57,7 +57,7 @@ and open the template in the editor.
                 <f:facet name="header"></f:facet>
                 <h:commandLink action="#{amigosBean.doRedirectToUserProfile(coincidencia)}">
                     <button class="btn btn-outline-dark">
-                        <span class="fa-stack" style="width: 25px; height: 25px;">
+                        <span class="fa-stack">
                             <i class="fas fa-user-alt"></i>
                         </span>
                     </button>
