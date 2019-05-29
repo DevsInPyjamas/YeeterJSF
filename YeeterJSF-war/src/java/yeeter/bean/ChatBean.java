@@ -5,6 +5,7 @@
  */
 package yeeter.bean;
 
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -12,7 +13,10 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import yeeterapp.ejb.MensajeFacade;
+import yeeterapp.ejb.NotificacionesFacade;
+import yeeterapp.ejb.UsuarioFacade;
 import yeeterapp.entity.Mensaje;
+import yeeterapp.entity.Notificaciones;
 import yeeterapp.entity.Usuario;
 
 /**
@@ -22,8 +26,17 @@ import yeeterapp.entity.Usuario;
 @Named(value = "chatBean")
 @RequestScoped
 public class ChatBean {
+
+    @EJB
+    private UsuarioFacade usuarioFacade;
+
+    @EJB
+    private NotificacionesFacade notificacionesFacade;
     @EJB
     private MensajeFacade mensajeFacade;
+    
+    
+    
     
     @Inject
     private YeeterSessionBean sessionBean;
@@ -32,7 +45,6 @@ public class ChatBean {
     protected Usuario usuario;
     protected Usuario amigoChat;
     protected String message;
-    protected Mensaje mensaje;
     
     /**
      * Creates a new instance of ChatBean
@@ -71,14 +83,6 @@ public class ChatBean {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    public Mensaje getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(Mensaje mensaje) {
-        this.mensaje = mensaje;
-    }
     
     @PostConstruct
     public void init(){
@@ -88,10 +92,6 @@ public class ChatBean {
     public String doCrearChat(Usuario amigo) {
         this.setAmigoChat(amigo);
         this.mensajes = this.mensajeFacade.queryMensajesAmigos(usuario.getId(), amigoChat.getId());
-        return "chat";
-    }
-    
-    public String doEnviarMensaje(){
         return "chat";
     }
 }

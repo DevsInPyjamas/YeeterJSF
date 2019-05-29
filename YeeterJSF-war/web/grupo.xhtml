@@ -14,25 +14,23 @@ and open the template in the editor.
     </head>
     <body>
         <div class = "container-fluid">
-            <div class = "row">
-                <div class="col"></div>
-                <div class="col-9">
-                    <nav class="navbar navbar-dark bg-dark">
-                        <span class="navbar-brand">#{gruposBean.grupoSeleccionado.nombre}</span>
-                        <h:form>
-                            <h:link styleClass="navbar-brand btn btn-outline-info"
-                                           outcome="membersList">
-                                Lista de Miembros
-                            </h:link>
-                        </h:form>
-                    </nav>
-                    <p>#{gruposBean.grupoSeleccionado.descripcion}</p>
-                    <div class="card mt-1 mb-1">
+            <div class="col"></div>
+            <div class = "col-9">
+                <nav class="navbar navbar-dark bg-dark">
+                    <span class="navbar-brand">#{gruposBean.grupoSeleccionado.nombre}</span>
+                </nav>
+                <p>#{gruposBean.grupoSeleccionado.descripcion}</p>
+                <div class="card mt-1 mb-1">
+                    <ui:repeat value="#{gruposBean.grupoSeleccionado.postList}" var="post">
                         <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text"></p>
+                            <h5 class="card-title">#{post.idAutor.username}</h5>
+                            <p class="card-text">#{post.contenido}</p>
+                            <h:form>
+                                <h:commandButton action="#{gruposBean.choosePost(post)}"/>
+                            </h:form>
+                            <footer >#{post.fechaPublicacion}</footer>
                         </div>
-                    </div>
+                    </ui:repeat>
                 </div>
                 <div class="col"></div>
             </div>

@@ -55,10 +55,10 @@
                         </ui:repeat>
                     </ui:fragment>
                     <h:form>
-                        <h:inputTextarea value="#{chatBean.mensaje.contenido}" rows="5" cols="195"></h:inputTextarea><br/>
+                        <h:inputTextarea value="#{mensajeBean.mensaje.contenido}" rows="5" cols="150"></h:inputTextarea><br/>
                         <div class="btn-group" role="group">
                             <h:commandButton class="btn btn-lg btn-outline-info btn-block" 
-                                             value="Enviar" action="#{chatBean.doEnviarMensaje()}" /><br/>
+                                             value="Enviar" action="#{mensajeBean.doEnviarMensaje()}" /><br/>
                         </div>
                     </h:form>
                 </div>
