@@ -90,7 +90,7 @@ public class MensajeBean implements Serializable {
 
         mensajeFacade.create(mensaje);
         chatBean.doCrearChat(amigo);
-        mensaje = null;
+        mensaje = new Mensaje();
         return "chat";
     }
 }
