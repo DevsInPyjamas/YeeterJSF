@@ -8,6 +8,7 @@ package yeeter.bean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import yeeterapp.ejb.UsuarioFacade;
 import yeeterapp.entity.Usuario;
@@ -31,6 +32,17 @@ public class YeeterSessionBean implements Serializable {
      * Creates a new instance of YeeterSessionBean
      */
     public YeeterSessionBean() {
+    }
+    
+    @PostConstruct
+    public void init() {
+        if(idLoggedUser == null)
+            this.error();
+    }
+    
+    
+    public String error(){
+        return "Login";
     }
 
     public Integer getIdLoggedUser() {

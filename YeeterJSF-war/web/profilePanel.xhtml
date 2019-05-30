@@ -10,82 +10,89 @@
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
     <h:body>
-        <div class="container">
-            <div class="bot">
-                <ui:fragment rendered="#{profileBean.message != null}">
-                    <div class="alert alert-success">
-                        #{profileBean.message}
-                    </div>
-                </ui:fragment>
-                <h:form>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Nombre de usuario </label>
-                        <div class="col-sm-7">
-                            <h:inputText value="#{profileBean.usuarioSeleccionado.username}"
-                                     readonly="#{!profileBean.editar}" class="form-control" />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-9">
+                    <nav class="navbar navbar-dark bg-dark mb-3">
+                        <span class="navbar-brand">Perfil de Usuario</span>
+                    </nav>
+                    <ui:fragment rendered="#{profileBean.message != null}">
+                        <div class="alert alert-success">
+                            #{profileBean.message}
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Nombre </label>
-                        <div class="col-sm-7">
-                            <h:inputText value="#{profileBean.usuarioSeleccionado.nombre}"
+                    </ui:fragment>
+                    <h:form>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Nombre de usuario </label>
+                            <div class="col-sm-7">
+                                <h:inputText value="#{profileBean.usuarioSeleccionado.username}"
                                          readonly="#{!profileBean.editar}" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Apellidos </label>
-                        <div class="col-sm-7">
-                            <h:inputText value="#{profileBean.usuarioSeleccionado.apellidos}"
-                                         readonly="#{!profileBean.editar}" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Email </label>
-                        <div class="col-sm-7">
-                            <h:inputText value="#{profileBean.usuarioSeleccionado.correo}"
-                                         readonly="#{!profileBean.editar}" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Fecha de Nacimiento </label>
-                        <div class="col-sm-7">
-                            <h:inputText  value="#{profileBean.fecha}"
-                                         readonly="#{!profileBean.editar}" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Email </label>
-                        <div class="col-sm-7">
-                            <h:inputText value="#{profileBean.usuarioSeleccionado.correo}"
-                                         readonly="#{!profileBean.editar}" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Biografía </label>
-                        <div class="col-sm-7">
-                            <h:inputTextarea value="#{profileBean.usuarioSeleccionado.correo}"
-                                         readonly="#{!profileBean.editar}" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                            <div class="btn-group" >
-                                <h:commandButton action="#{profileBean.doModificar()}" value="Modificar Perfil" 
-                                                 rendered="#{profileBean.isLoggedUser and !profileBean.editar}" class="btn btn-outline-info"/>
-                                <h:commandButton action="#{profileBean.doGuardar()}" value="Guardar" rendered="#{profileBean.isLoggedUser and profileBean.editar}" 
-                                                 class="btn btn-outline-info" />
-                                <h:link class="btn btn-outline-secondary" value="Modificar Contraseña" rendered="#{profileBean.isLoggedUser and !profileBean.editar}"
-                                        outcome="modificarContrasena"/>
-                                <h:commandButton value="Enviar Mensaje" class="btn btn-outline-info" action="#{chatBean.doCrearChat(profileBean.usuarioSeleccionado)}" 
-                                                 rendered="#{!profileBean.isLoggedUser and yeeterSessionBean.loggedUserObject.usuarioList.contains(profileBean.usuarioSeleccionado)}"/>
-                                <h:commandButton value="Añadir amigo" class="btn btn-outline-secondary" action="#{amigosBean.doAddFriend(profileBean.usuarioSeleccionado)}"
-                                        rendered="#{!profileBean.isLoggedUser and !yeeterSessionBean.loggedUserObject.usuarioList.contains(profileBean.usuarioSeleccionado) and !profileBean.existePeticionYa()}" />
-                                <h:commandButton value="Aceptar petición" class="btn btn-outline-secondary" action="#{yeeterNotificationsBean.doAcceptFriendRequest(profileBean.usuarioSeleccionado.id)}"
-                                                 rendered="#{!profileBean.isLoggedUser and profileBean.existePeticionYa()}" />
                             </div>
                         </div>
-                    </div>
-                </h:form>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Nombre </label>
+                            <div class="col-sm-7">
+                                <h:inputText value="#{profileBean.usuarioSeleccionado.nombre}"
+                                             readonly="#{!profileBean.editar}" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Apellidos </label>
+                            <div class="col-sm-7">
+                                <h:inputText value="#{profileBean.usuarioSeleccionado.apellidos}"
+                                             readonly="#{!profileBean.editar}" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Email </label>
+                            <div class="col-sm-7">
+                                <h:inputText value="#{profileBean.usuarioSeleccionado.correo}"
+                                             readonly="#{!profileBean.editar}" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Fecha de Nacimiento </label>
+                            <div class="col-sm-7">
+                                <h:inputText  value="#{profileBean.fecha}"
+                                             readonly="#{!profileBean.editar}" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Email </label>
+                            <div class="col-sm-7">
+                                <h:inputText value="#{profileBean.usuarioSeleccionado.correo}"
+                                             readonly="#{!profileBean.editar}" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"> Biografía </label>
+                            <div class="col-sm-7">
+                                <h:inputTextarea value="#{profileBean.usuarioSeleccionado.correo}"
+                                             readonly="#{!profileBean.editar}" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <div class="btn-group" >
+                                    <h:commandButton action="#{profileBean.doModificar()}" value="Modificar Perfil" 
+                                                     rendered="#{profileBean.isLoggedUser and !profileBean.editar}" class="btn btn-outline-info"/>
+                                    <h:commandButton action="#{profileBean.doGuardar()}" value="Guardar" rendered="#{profileBean.isLoggedUser and profileBean.editar}" 
+                                                     class="btn btn-outline-info" />
+                                    <h:link class="btn btn-outline-secondary" value="Modificar Contraseña" rendered="#{profileBean.isLoggedUser and !profileBean.editar}"
+                                            outcome="modificarContrasena"/>
+                                    <h:commandButton value="Enviar Mensaje" class="btn btn-outline-info" action="#{chatBean.doCrearChat(profileBean.usuarioSeleccionado)}" 
+                                                     rendered="#{!profileBean.isLoggedUser and yeeterSessionBean.loggedUserObject.usuarioList.contains(profileBean.usuarioSeleccionado)}"/>
+                                    <h:commandButton value="Añadir amigo" class="btn btn-outline-secondary" action="#{amigosBean.doAddFriend(profileBean.usuarioSeleccionado)}"
+                                            rendered="#{!profileBean.isLoggedUser and !yeeterSessionBean.loggedUserObject.usuarioList.contains(profileBean.usuarioSeleccionado) and !profileBean.existePeticionYa()}" />
+                                    <h:commandButton value="Aceptar petición" class="btn btn-outline-secondary" action="#{yeeterNotificationsBean.doAcceptFriendRequest(profileBean.usuarioSeleccionado.id)}"
+                                                     rendered="#{!profileBean.isLoggedUser and profileBean.existePeticionYa()}" />
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="col"></div>
             </div>
         </div>
     </h:body>

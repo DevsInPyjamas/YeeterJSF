@@ -129,4 +129,8 @@ public class YeeterNotificationsBean {
         this.init();
         return null;
     }
+    
+    public String doRedirectToSenderProfile(int idUsuario) {
+        return "";
+    }
 }

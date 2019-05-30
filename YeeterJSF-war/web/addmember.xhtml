@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <title>Yeeter - Añadir Miembro</title>
+        <ui:include src="WEB-INF/navbar.xhtml"/>
+    </h:head>
+    <h:body>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-9">
+                    <nav class="navbar navbar-dark bg-dark mb-5">
+                        <span class="navbar-brand">Añadir miembro</span>
+                    </nav>
+                    <ui:component rendered="#{yeeterAddMemberBean.friendsNotInGroup.size() == 0}">
+                        <div class="alert alert-warning">Todos tus amigos se encuentran ya en este grupo!</div>
+                    </ui:component>
+                    <ui:repeat var="miembro" value="#{yeeterAddMemberBean.friendsNotInGroup}">
+                        <div class="card mt-2 mb-2">
+                                <div class="card-body row align-items-center">
+                                    <div class="col-10">
+                                        #{miembro.nombre} #{miembro.apellidos}
+                                    </div>
+                                    <h:form>
+                                        <a jsf:action="#{amigosBean.doRedirectToUserProfile(miembro)}"
+                                           class="btn btn-outline-dark btn-sm mr-2">
+                                            <i class="fas fa-user-alt"></i>
+                                        </a>
+                                        <a jsf:action="#{yeeterAddMemberBean.doAddMember(miembro)}"
+                                           class="btn btn-outline-dark">
+                                            <i class="fas fa-user-plus"></i>
+                                        </a>
+                                    </h:form>
+                                </div>
+                            </div>
+                    </ui:repeat>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+        
+    </h:body>
+</html>
+
