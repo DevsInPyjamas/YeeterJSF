@@ -34,9 +34,9 @@ public class PostBean {
     @Inject
     private YeeterSessionBean sessionBean;
 
-    protected List<Grupo> grupos;
-    protected int selectedGrupo;
-    protected Post post;
+    private List<Grupo> grupos;
+    private int selectedGrupo;
+    private Post post;
 
     /**
      * Creates a new instance of PostBean

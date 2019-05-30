@@ -32,10 +32,10 @@ public class WelcomePageBean {
     
     
     
-    @Inject YeeterSessionBean sessionBean;
-    @Inject ProfileBean profileBean;
-    Usuario loggedUser;
-    List<Post> listaPost;
+    @Inject private YeeterSessionBean sessionBean;
+    @Inject private ProfileBean profileBean;
+    private Usuario loggedUser;
+    private List<Post> listaPost;
 
     /**
      * Creates a new instance of WelcomePageBean

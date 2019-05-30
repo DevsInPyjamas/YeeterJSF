@@ -35,12 +35,12 @@ public class ProfileBean implements Serializable {
     private AmigosBean amigosBean;
     
     private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-    protected boolean isLoggedUser;
-    protected boolean editar = false;
-    protected Usuario usuarioSeleccionado;
-    protected String message, error;
-    protected String fecha;
-    protected String oldPass, newPass, newPassEq;
+    private boolean isLoggedUser;
+    private boolean editar = false;
+    private Usuario usuarioSeleccionado;
+    private String message, error;
+    private String fecha;
+    private String oldPass, newPass, newPassEq;
 
     /**
      * Creates a new instance of ProfileBean

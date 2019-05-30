@@ -33,10 +33,10 @@ public class AmigosBean implements Serializable {
     
     @Inject YeeterSessionBean sessionBean;
     @Inject ProfileBean profileBean;
-    protected List<Usuario> listaCoincidencias;
-    protected String busqueda;
-    protected String message;
-    protected Usuario usuarioSeleccionado;
+    private List<Usuario> listaCoincidencias;
+    private String busqueda;
+    private String message;
+    private Usuario usuarioSeleccionado;
 
     /**
      * Creates a new instance of AmigosBean

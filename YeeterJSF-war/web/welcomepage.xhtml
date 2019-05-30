@@ -2,9 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Welcome Page</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
     <h:body>
@@ -47,7 +48,17 @@
                                     </h5>
                                     <p class="card-text"> #{post.contenido}</p>
 
-                                    <footer > #{post.fechaPublicacion} </footer>
+                                    <div class="row">
+                                        <footer class="col">
+                                            #{post.fechaPublicacion}
+                                        </footer>
+                                        <h:form class="col d-flex flex-row-reverse">
+                                            <a jsf:action="#{postViewBean.doVisualizePost(post)}"
+                                           class="btn btn-outline-dark p-2">
+                                            <i class="fas fa-directions"></i>
+                                        </a>
+                                        </h:form>
+                                    </div>
                                 </div>
                             </div>
                             </h:form>
