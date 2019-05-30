@@ -5,12 +5,14 @@
  */
 package yeeter.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import yeeterapp.ejb.MensajeFacade;
 import yeeterapp.ejb.NotificacionesFacade;
@@ -24,8 +26,8 @@ import yeeterapp.entity.Usuario;
  * @author jesus
  */
 @Named(value = "chatBean")
-@RequestScoped
-public class ChatBean {
+@SessionScoped
+public class ChatBean implements Serializable {
 
     @EJB
     private UsuarioFacade usuarioFacade;
