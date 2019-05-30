@@ -29,10 +29,10 @@ public class NuevoGrupoBean {
     @EJB
     private UsuarioFacade usuarioFacade;
     
-    @Inject YeeterSessionBean sessionBean;
-    @Inject GruposBean gruposBean;
-    protected Usuario loggedUser;
-    protected Grupo nuevoGrupo;
+    @Inject private YeeterSessionBean sessionBean;
+    @Inject private GruposBean gruposBean;
+    private Usuario loggedUser;
+    private Grupo nuevoGrupo;
     /**
      * Creates a new instance of NuevoGrupoBean
      */

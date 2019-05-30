@@ -34,7 +34,7 @@ public class EnviarMensajeBean {
 
     
     @Inject YeeterSessionBean sessionBean;
-    Usuario loggedUser;
+    private Usuario loggedUser;
     /**
      * Creates a new instance of EnviarMensajeBean
      */

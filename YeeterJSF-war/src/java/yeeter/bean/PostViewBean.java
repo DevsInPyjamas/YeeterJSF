@@ -8,7 +8,6 @@ package yeeter.bean;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import yeeterapp.entity.Post;
 
 /**
@@ -19,7 +18,7 @@ import yeeterapp.entity.Post;
 @RequestScoped
 public class PostViewBean {
     
-    protected Post post;
+    private Post post;
     
     /**
      * Creates a new instance of PostViewBean
@@ -46,11 +45,17 @@ public class PostViewBean {
     
     public String distinguir() {
         String res;
-         if (post.getIdGrupo() != null){
-             res="Posted in group" + post.getIdGrupo().getNombre()+ "by @" + post.getIdAutor().getUsername();
-         }else{
-             res="@"+ post.getIdAutor().getUsername(); 
-         }
-         return res;
+        if (post.getIdGrupo() != null){
+            res="Posted in group" + post.getIdGrupo().getNombre()+ "by @" + post.getIdAutor().getUsername();
+        } else{
+            res="@"+ post.getIdAutor().getUsername(); 
+        }
+        return res;
     }
+    
+    public String doVisualizePost(Post post) {
+        this.post = post;
+        return "post";
+    }
+    
 }

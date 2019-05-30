@@ -26,7 +26,7 @@ public class ComentarioBean {
     
     @Inject private YeeterSessionBean sessionBean;
     @Inject private PostViewBean postViewBean;
-    Comentario com;
+    private Comentario com;
     /**
      * Creates a new instance of ComentarioBean
      */
@@ -49,7 +49,7 @@ public class ComentarioBean {
     public String createComment(){
         this.com.setAutor(sessionBean.getLoggedUserObject());
         this.com.setFechaPublicacion(new java.util.Date(System.currentTimeMillis()));
-        this.com.setPost(postViewBean.post);
+        this.com.setPost(postViewBean.getPost());
         comentarioFacade.create(com);
         
         return "post";

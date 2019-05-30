@@ -27,12 +27,12 @@ public class ConversacionesBean {
     private MensajeFacade mensajeFacade;
 
     @Inject
-    YeeterSessionBean sessionBean;
-    Usuario loggedUser;
+    private YeeterSessionBean sessionBean;
+    private Usuario loggedUser;
 
-    List<Mensaje> listaMensajesSiendoEmisor;
-    List<Mensaje> listaMensajesSiendoReceptor;
-    List<Usuario> listaConversaciones;
+    private List<Mensaje> listaMensajesSiendoEmisor;
+    private List<Mensaje> listaMensajesSiendoReceptor;
+    private List<Usuario> listaConversaciones;
 
     /**
      * Creates a new instance of ConversacionesBean

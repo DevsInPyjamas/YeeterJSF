@@ -31,8 +31,8 @@ public class YeeterAddMemberBean {
     @EJB
     private GrupoFacade grupoFacade;
     
-    @Inject YeeterSessionBean sessionBean;
-    @Inject GruposBean groupsBean;
+    @Inject private YeeterSessionBean sessionBean;
+    @Inject private GruposBean groupsBean;
     
     
     
