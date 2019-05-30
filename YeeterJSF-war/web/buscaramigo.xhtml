@@ -20,7 +20,9 @@ and open the template in the editor.
             </div>
         </ui:fragment>
         <h:form>
-            <h:inputText id = "search" value = "#{amigosBean.busqueda}"></h:inputText>
+            <h:inputText id = "search" value = "#{amigosBean.busqueda}">
+                <f:ajax render = "amigosTable" event = "keyup" listener = "#{amigosBean.nombreChangeListener}"/>
+            </h:inputText>
             <h:commandLink action = "#{amigosBean.searchCoincidences(amigosBean.busqueda)}">
                 <button class="btn btn-outline-dark">
                     <span style="width: 25px; height: 25px; display:inline-block;">
@@ -30,18 +32,18 @@ and open the template in the editor.
             </h:commandLink>
         </h:form>
         <h:form>
-        <h:dataTable class = "table" value="#{amigosBean.listaCoincidencias}" var = "coincidencia">
+        <h:dataTable class = "table" value="#{amigosBean.listaCoincidencias}" var = "coincidencia" id = "amigosTable">
             <h:column>
                 <f:facet name = "header">NOMBRE</f:facet>
-                #{coincidencia.nombre}
+                <h:outputText value = "#{coincidencia.nombre}"/>
             </h:column>
             <h:column>
                 <f:facet name = "header">APELLIDOS</f:facet>
-                #{coincidencia.apellidos}
+                <h:outputText value = "#{coincidencia.apellidos}"/>
             </h:column>
             <h:column>
                 <f:facet name = "header">USERNAME</f:facet>
-                #{coincidencia.username}
+                <h:outputText value = "#{coincidencia.username}"/>
             </h:column>
             <h:column>
                 <f:facet name = "header"></f:facet>
