@@ -94,5 +94,8 @@ public class MensajeBean implements Serializable {
         chatBean.doCrearChat(chatBean.getAmigoChat());
         mensaje = new Mensaje();
         return "chat";
+        // en el link de la notificación añadir el id mío y luego hacer
+        // una acción en notificacion para que reciba el id del usuario
+        // y redireccionar a el chat con el usuario.
     }
 }
