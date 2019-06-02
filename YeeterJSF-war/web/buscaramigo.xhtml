@@ -21,7 +21,7 @@ and open the template in the editor.
         </ui:fragment>
         <h:form class="mb-4">
             <h:inputText id = "search" value = "#{amigosBean.busqueda}">
-                <f:ajax render = "amigosTable" event = "keyup" listener = "#{amigosBean.nombreChangeListener}"/>
+                <f:ajax render = "formulario2:amigosTable" event = "keyup" listener = "#{amigosBean.nombreChangeListener()}"/>
             </h:inputText>
             <h:commandLink action = "#{amigosBean.searchCoincidences(amigosBean.busqueda)}">
                 <button class="btn btn-outline-dark">
@@ -31,8 +31,8 @@ and open the template in the editor.
                 </button>
             </h:commandLink>
         </h:form>
-        <h:form>
-        <h:dataTable class = "table" value="#{amigosBean.listaCoincidencias}" var = "coincidencia" id = "amigosTable">
+        <h:form id="formulario2">
+        <h:dataTable id = "amigosTable" class = "table" value="#{amigosBean.listaCoincidencias}" var = "coincidencia">
             <h:column>
                 <f:facet name = "header">NOMBRE</f:facet>
                 <h:outputText value = "#{coincidencia.nombre}"/>

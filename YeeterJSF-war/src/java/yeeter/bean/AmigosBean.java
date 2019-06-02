@@ -113,7 +113,9 @@ public class AmigosBean implements Serializable {
         return "profilePanel";
     }
     
-    public void nombreChangeListener(AjaxBehaviorEvent  event) {
-        listaCoincidencias = usuarioFacade.queryUserByUsernameOrName(busqueda);
+    public void nombreChangeListener() {
+        if(this.busqueda != null && !this.busqueda.isEmpty()){
+            this.listaCoincidencias = this.usuarioFacade.queryUserByUsernameOrName(busqueda);
+        }
     } 
 }
