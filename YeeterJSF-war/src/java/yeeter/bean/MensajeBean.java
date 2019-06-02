@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -25,7 +26,7 @@ import yeeterapp.entity.Usuario;
  * @author jesus
  */
 @Named(value = "mensajeBean")
-@SessionScoped
+@RequestScoped
 public class MensajeBean implements Serializable {
 
     @EJB
@@ -37,10 +38,10 @@ public class MensajeBean implements Serializable {
     @EJB
     private NotificacionesFacade notificacionesFacade;
     
-    @Inject YeeterSessionBean sessionBean;
-    @Inject ChatBean chatBean;
-    protected Usuario amigo, loggedUser;
-    protected Mensaje mensaje;
+    @Inject private YeeterSessionBean sessionBean;
+    @Inject private ChatBean chatBean;
+    private Usuario amigo, loggedUser;
+    private Mensaje mensaje;
     
     /**
      * Creates a new instance of MensajeBean
@@ -72,25 +73,29 @@ public class MensajeBean implements Serializable {
     }
     
     public String doEnviarMensaje(){
-        mensaje.setIdEmisor(loggedUser);
-        mensaje.setIdReceptor(amigo);
+        mensaje.setIdEmisor(sessionBean.getLoggedUserObject());
+        mensaje.setIdReceptor(chatBean.getAmigoChat());
         Date fecha = new Date(System.currentTimeMillis());
         mensaje.setFecha(fecha);
         
         Notificaciones notificacion = new Notificaciones();
-        notificacion.setContenido("El usuario " + loggedUser.getUsername() + " te ha enviado un mensaje");     
-        notificacion.setLink("chat");
-        notificacion.setIdUsuario(amigo);
+        notificacion.setContenido("El usuario " + sessionBean.getLoggedUserObject().getUsername() + " te ha enviado un mensaje");     
+        notificacion.setLink(sessionBean.getLoggedUserObject().getId().toString());
+        notificacion.setIdUsuario(chatBean.getAmigoChat());
         notificacion.setNotificacionLeida(false);
         notificacionesFacade.create(notificacion);
         
-        List<Notificaciones> l = amigo.getNotificacionesList();
+        List<Notificaciones> l = chatBean.getAmigoChat().getNotificacionesList();
         l.add(notificacion);
-        usuarioFacade.edit(amigo);
+        usuarioFacade.edit(chatBean.getAmigoChat());
 
         mensajeFacade.create(mensaje);
-        chatBean.doCrearChat(amigo);
+        chatBean.init();
+        chatBean.doCrearChat(chatBean.getAmigoChat());
         mensaje = new Mensaje();
         return "chat";
+        // en el link de la notificación añadir el id mío y luego hacer
+        // una acción en notificacion para que reciba el id del usuario
+        // y redireccionar a el chat con el usuario.
     }
 }
