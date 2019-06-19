@@ -32,15 +32,15 @@ and open the template in the editor.
         <h:form>
         <h:dataTable class = "table" value="#{amigosBean.listaCoincidencias}" var = "coincidencia">
             <h:column>
-                <f:facet name = "header">NOMBRE</f:facet>
+                <f:facet name = "header">#{msg['registerName']}</f:facet>
                 #{coincidencia.nombre}
             </h:column>
             <h:column>
-                <f:facet name = "header">APELLIDOS</f:facet>
+                <f:facet name = "header">#{msg['registerLastame']}</f:facet>
                 #{coincidencia.apellidos}
             </h:column>
             <h:column>
-                <f:facet name = "header">USERNAME</f:facet>
+                <f:facet name = "header">#{msg['registerUsername']}</f:facet>
                 #{coincidencia.username}
             </h:column>
             <h:column>

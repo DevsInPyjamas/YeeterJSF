@@ -2,13 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         <ui:include src="head.xhtml"/>
         <link rel="stylesheet" href="/YeeterJSF-war/assets/css/navbar.css"/>
     </h:head>
     <h:body>
+        <f:loadBundle basename="i18n.i18n" var="msg"/>
         <nav class="yeeter-nav navbar navbar-expand-lg navbar-dark bg-dark mb-5">
             <h:link styleClass="navbar-brand" outcome="welcomepage">Yeeter</h:link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,13 +19,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item d-flex align-items-center">
-                        <h:link styleClass="nav-link" outcome="notificaciones"><i class="fas fa-bell"></i> Notificaciones<span class="sr-only">(current)</span></h:link>
+                        <h:link styleClass="nav-link" outcome="notificaciones"><i class="fas fa-bell"></i> #{msg['navbarNotifications']}<span class="sr-only">(current)</span></h:link>
                     </li>
                     <li class="nav-item d-flex align-items-center">
-                        <h:link styleClass="nav-link" outcome="Conversaciones"><i class="fas fa-envelope"></i> Mensajes</h:link>
+                        <h:link styleClass="nav-link" outcome="Conversaciones"><i class="fas fa-envelope"></i> #{msg['navbarMessages']}</h:link>
                     </li>
                     <li class="nav-item d-flex align-items-center">
-                        <h:link outcome = "listagrupos" styleClass="nav-link"><i class="fas fa-users"></i> Grupos</h:link>
+                        <h:link outcome = "listagrupos" styleClass="nav-link"><i class="fas fa-users"></i> #{msg['navbarGroups']}</h:link>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-3">
@@ -38,7 +40,7 @@
                     </li>
                     <li class="nav-item">
                         <h:form>
-                            <h:commandLink styleClass="nav-link" action="#{welcomePageBean.doRedirectToProfile}"><i class="fas fa-user"></i> Perfil</h:commandLink>    
+                            <h:commandLink styleClass="nav-link" action="#{welcomePageBean.doRedirectToProfile}"><i class="fas fa-user"></i> #{msg['navbarProfile']}</h:commandLink>    
                         </h:form>
                         
                     </li>
@@ -60,7 +62,7 @@
                       <h:form>
                             <h:commandLink action="#{yeeterSessionBean.doRemoveLoggedUser()}">
                                 <button class="btn btn-outline-light my-2 my-sm-0">
-                                    Logout
+                                    #{msg['navbarLogout']}
                                 </button>
                             </h:commandLink>
                         </h:form>
