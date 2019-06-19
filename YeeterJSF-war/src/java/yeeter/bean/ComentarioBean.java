@@ -12,6 +12,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import yeeterapp.ejb.ComentarioFacade;
 import yeeterapp.entity.Comentario;
+import yeeterapp.entity.Post;
 
 /**
  *
@@ -26,13 +27,31 @@ public class ComentarioBean {
     
     @Inject private YeeterSessionBean sessionBean;
     @Inject private PostViewBean postViewBean;
+    private Post postElegido;
     private Comentario com;
+   
     /**
      * Creates a new instance of ComentarioBean
      */
     public ComentarioBean() {
     }
 
+    public YeeterSessionBean getSessionBean() {
+        return sessionBean;
+    }
+
+    public void setSessionBean(YeeterSessionBean sessionBean) {
+        this.sessionBean = sessionBean;
+    }
+
+    public PostViewBean getPostViewBean() {
+        return postViewBean;
+    }
+
+    public void setPostViewBean(PostViewBean postViewBean) {
+        this.postViewBean = postViewBean;
+    }
+    
     public Comentario getCom() {
         return com;
     }
@@ -40,16 +59,26 @@ public class ComentarioBean {
     public void setCom(Comentario com) {
         this.com = com;
     }
+
+    public Post getPostElegido() {
+        return postElegido;
+    }
+
+    public void setPostElegido(Post postElegido) {
+        this.postElegido = postElegido;
+    }
     
     @PostConstruct
     public void init(){
+        postElegido = this.getPostViewBean().getPost();
         com = new Comentario();
     }
     
     public String createComment(){
         this.com.setAutor(sessionBean.getLoggedUserObject());
         this.com.setFechaPublicacion(new java.util.Date(System.currentTimeMillis()));
-        this.com.setPost(postViewBean.getPost());
+        this.com.setPost(this.getPostElegido());
+        this.postElegido.getComentarioList().add(com);
         comentarioFacade.create(com);
         
         return "post";
