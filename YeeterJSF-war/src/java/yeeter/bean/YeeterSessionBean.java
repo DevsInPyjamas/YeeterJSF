@@ -46,6 +46,8 @@ public class YeeterSessionBean implements Serializable {
     public void init() {
         if(idLoggedUser == null)
             this.error();
+        this.currentLocale = CATALAN;
+        changeLocale();
     }
 
     public Locale getCurrentLocale() {

@@ -6,8 +6,8 @@
     <application>
      	   <locale-config>
      	        <default-locale>ca</default-locale>
-                <supported-locale>en</supported-locale>
                 <supported-locale>es</supported-locale>
+                <supported-locale>en</supported-locale>
      	   </locale-config>
 	   <resource-bundle>
 		<base-name>i18n.i18n</base-name>

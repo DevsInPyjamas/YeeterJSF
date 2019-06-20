@@ -10,6 +10,7 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{yeeterSessionBean.currentLocale.language}"/>
     <head>
         <title>Yeeter - #{gruposBean.grupoSeleccionado.nombre}</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>

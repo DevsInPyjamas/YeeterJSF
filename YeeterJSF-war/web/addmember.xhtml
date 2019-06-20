@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{yeeterSessionBean.currentLocale.language}"/>
     <h:head>
         <title>Yeeter - Añadir Miembro</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>

@@ -5,6 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{yeeterSessionBean.currentLocale.language}"/>
     <h:head>
         <title>(#{yeeterNotificationsBean.notRead}) Yeeter - Notificaciones</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>
