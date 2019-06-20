@@ -8,8 +8,11 @@ package yeeter.bean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
 import yeeterapp.ejb.UsuarioFacade;
 import yeeterapp.entity.Usuario;
 
@@ -24,6 +27,11 @@ public class YeeterSessionBean implements Serializable {
     @EJB
     private UsuarioFacade usuarioFacade;
     
+    private final static Locale SPANISH = new Locale("es");
+    private final static Locale ENGLISH = new Locale("en");
+    private final static Locale CATALAN = new Locale("es", "CA");
+    
+    private Locale currentLocale;
     
     
     private Integer idLoggedUser;
@@ -38,6 +46,35 @@ public class YeeterSessionBean implements Serializable {
     public void init() {
         if(idLoggedUser == null)
             this.error();
+        currentLocale = ENGLISH;
+    }
+
+    public Locale getCurrentLocale() {
+        return currentLocale;
+    }
+
+    public String setEnglish() {
+        this.currentLocale = ENGLISH;
+        changeLocale();
+        return null;
+    }
+    
+    public String setSpanish() {
+        this.currentLocale = SPANISH;
+        changeLocale();
+        return null;
+    }
+    
+    public String setCat() {
+        this.currentLocale = CATALAN;
+        changeLocale();
+        return null;
+    }
+    
+    
+    public void changeLocale() {
+        UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
+        view.setLocale(CATALAN);
     }
     
     

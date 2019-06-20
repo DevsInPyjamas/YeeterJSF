@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="/YeeterJSF-war/assets/css/navbar.css"/>
     </h:head>
     <h:body>
-        <f:loadBundle basename="i18n.i18n" var="msg"/>
+        <f:loadBundle basename="i18n" var="msg"/>
         <nav class="yeeter-nav navbar navbar-expand-lg navbar-dark bg-dark mb-5">
             <h:link styleClass="navbar-brand" outcome="welcomepage">Yeeter</h:link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +58,36 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-3">
-	          <li class="nav-item">
-                      <h:form>
-                            <h:commandLink action="#{yeeterSessionBean.doRemoveLoggedUser()}">
-                                <button class="btn btn-outline-light my-2 my-sm-0">
-                                    #{msg['navbarLogout']}
-                                </button>
-                            </h:commandLink>
+                    <li class="nav-item">
+                        <h:form>
+                            <div class="row">
+                                <h:commandLink action="#{yeeterSessionBean.doRemoveLoggedUser()}" class="col">
+                                    <button class="btn btn-outline-light my-2 my-sm-0">
+                                        #{msg['navbarLogout']}
+                                    </button>
+                                </h:commandLink>
+                                <div class="dropdown col">
+                                    <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Language
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <h:commandLink class="dropdown-item" action="#{yeeterSessionBean.setSpanish()}">
+                                            Español
+                                            <!--<img src="/assets/resources/sp.jpg"/>-->
+                                        </h:commandLink>
+                                        <h:commandLink class="dropdown-item" action="#{yeeterSessionBean.setCat()}">
+                                            Català
+                                            <!--<img src="/assets/resources/cat.png"/>-->
+                                        </h:commandLink>
+                                        <h:commandLink class="dropdown-item" action="#{yeeterSessionBean.setEnglish()}">
+                                            English
+                                            <!--<img src="/assets/resources/uk.png"/>-->
+                                        </h:commandLink>
+                                    </div>
+                                </div>
+                            </div>
                         </h:form>
-	          </li>
+                    </li>
                 </ul>
             </div>
         </nav>
