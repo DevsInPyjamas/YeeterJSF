@@ -5,20 +5,20 @@
  */
 package yeeter.bean;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import yeeterapp.entity.Post;
 
 /**
  *
- * @author jugr9
+ * @author alec
  */
 @Named(value = "postViewBean")
-@RequestScoped
-public class PostViewBean {
-    
-    private Post post;
+@SessionScoped
+public class PostViewBean implements Serializable {
+private Post post;
     
     /**
      * Creates a new instance of PostViewBean
@@ -57,5 +57,4 @@ public class PostViewBean {
         this.post = post;
         return "post";
     }
-    
 }

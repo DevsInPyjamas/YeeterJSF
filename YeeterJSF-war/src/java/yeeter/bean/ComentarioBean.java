@@ -5,12 +5,14 @@
  */
 package yeeter.bean;
 
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import yeeterapp.ejb.ComentarioFacade;
+import yeeterapp.ejb.PostFacade;
 import yeeterapp.entity.Comentario;
 
 /**
@@ -20,6 +22,9 @@ import yeeterapp.entity.Comentario;
 @Named(value = "comentarioBean")
 @RequestScoped
 public class ComentarioBean {
+
+    @EJB
+    private PostFacade postFacade;
     
     @EJB
     private ComentarioFacade comentarioFacade;
@@ -51,7 +56,11 @@ public class ComentarioBean {
         this.com.setFechaPublicacion(new java.util.Date(System.currentTimeMillis()));
         this.com.setPost(postViewBean.getPost());
         comentarioFacade.create(com);
-        
+        List<Comentario> comments = postViewBean.getPost().getComentarioList();
+        comments.add(com);
+        postViewBean.getPost().setComentarioList(comments);
+        this.postFacade.edit(postViewBean.getPost());
+        this.postViewBean.init();
         return "post";
     }
 }
