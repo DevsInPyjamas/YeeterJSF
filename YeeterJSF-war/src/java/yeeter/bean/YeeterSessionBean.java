@@ -46,7 +46,6 @@ public class YeeterSessionBean implements Serializable {
     public void init() {
         if(idLoggedUser == null)
             this.error();
-        currentLocale = ENGLISH;
     }
 
     public Locale getCurrentLocale() {
@@ -74,7 +73,7 @@ public class YeeterSessionBean implements Serializable {
     
     public void changeLocale() {
         UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
-        view.setLocale(CATALAN);
+        view.setLocale(currentLocale);
     }
     
     

@@ -2,15 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
         <ui:include src="head.xhtml"/>
         <link rel="stylesheet" href="/YeeterJSF-war/assets/css/navbar.css"/>
     </h:head>
     <h:body>
-        <f:loadBundle basename="i18n" var="msg"/>
         <nav class="yeeter-nav navbar navbar-expand-lg navbar-dark bg-dark mb-5">
             <h:link styleClass="navbar-brand" outcome="welcomepage">Yeeter</h:link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

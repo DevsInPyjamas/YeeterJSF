@@ -10,7 +10,7 @@
                 <supported-locale>ca</supported-locale>
      	   </locale-config>
 	   <resource-bundle>
-		<base-name>i18n</base-name>
+		<base-name>i18n.i18n</base-name>
 		<var>msg</var>
 	   </resource-bundle>
      </application>
