@@ -11,6 +11,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import yeeterapp.ejb.PeticionAmistadFacade;
 import yeeterapp.ejb.UsuarioFacade;
@@ -111,4 +112,10 @@ public class AmigosBean implements Serializable {
         profileBean.init();
         return "profilePanel";
     }
+    
+    public void nombreChangeListener() {
+        if(this.busqueda != null && !this.busqueda.isEmpty()){
+            this.listaCoincidencias = this.usuarioFacade.queryUserByUsernameOrName(busqueda);
+        }
+    } 
 }
