@@ -34,16 +34,16 @@ and open the template in the editor.
         <h:form id="formulario2">
         <h:dataTable id = "amigosTable" class = "table" value="#{amigosBean.listaCoincidencias}" var = "coincidencia">
             <h:column>
-                <f:facet name = "header">NOMBRE</f:facet>
-                <h:outputText value = "#{coincidencia.nombre}"/>
+                <f:facet name = "header">#{msg['registerName']}</f:facet>
+                #{coincidencia.nombre}
             </h:column>
             <h:column>
-                <f:facet name = "header">APELLIDOS</f:facet>
-                <h:outputText value = "#{coincidencia.apellidos}"/>
+                <f:facet name = "header">#{msg['registerLastame']}</f:facet>
+                #{coincidencia.apellidos}
             </h:column>
             <h:column>
-                <f:facet name = "header">USERNAME</f:facet>
-                <h:outputText value = "#{coincidencia.username}"/>
+                <f:facet name = "header">#{msg['registerUsername']}</f:facet>
+                #{coincidencia.username}
             </h:column>
             <h:column>
                 <f:facet name = "header"></f:facet>

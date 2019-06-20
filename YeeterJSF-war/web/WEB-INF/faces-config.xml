@@ -7,11 +7,10 @@
      	   <locale-config>
      	        <default-locale>es</default-locale>
                 <supported-locale>en</supported-locale>
-                <supported-locale>fr</supported-locale>
                 <supported-locale>ca</supported-locale>
      	   </locale-config>
 	   <resource-bundle>
-		<base-name>yeeter.i18n</base-name>
+		<base-name>i18n.i18n</base-name>
 		<var>msg</var>
 	   </resource-bundle>
      </application>

@@ -3,38 +3,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <ui:include src="WEB-INF/head.xhtml"/>
         <title>Yeeter - Login</title>
         <link rel="stylesheet" href="assets/css/loginstyle.css"/>
     </h:head>
     <h:body styleClass="body-container">
+        <f:loadBundle basename="i18n.i18n" var="msg"/>
         <div class="body-container">
             <div class="container d-flex justify-content-center" style="align-items: center;">
                 <div style="width: 250px;">
-                    <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+                    <h1 class="h3 mb-3 font-weight-normal">#{msg['loginHeader']}</h1>
                     <h:form class="form-login-container">
-                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <label for="inputEmail" class="sr-only">#{msg['loginEmailPlaceholder']}</label>
                         <h:inputText value="#{yeeterLoginBean.email}"
                                      styleClass="form-control #{( yeeterLoginBean.isEmailError() ) ? 'is-invalid' : ''}"
                                      p:placeholder="Email"/>
-                        <label for="inputPassword" class="sr-only">Password</label>
+                        <label for="inputPassword" class="sr-only">#{msg['loginPassPlaceholder']}</label>
                         <h:inputSecret value="#{yeeterLoginBean.password}"
                                        styleClass="form-control #{( yeeterLoginBean.isPasswordError() ) ? 'is-invalid' : ''}"
                                        p:placeholder="Password"/>
                         <div class="checkbox mb-3 mt-3">
                             <ui:fragment rendered="#{yeeterLoginBean.error != null}">
                                 <div class="alert alert-warning">
-                                    #{yeeterLoginBean.error}
+                                    #{msg['emailError']}
                                 </div>
                             </ui:fragment>
                             <!--a class="text-muted" href="forgotpswrd.jsp">Contraseña Olvidada</a-->
                         </div>
                         <div class="btn-group" role="group">
                             <h:commandButton action="register"  styleClass="btn btn-lg btn-outline-secondary"
-                                             value="Registrarse"/>
-                            <h:commandButton value="Entrar"
+                                             value="#{msg['loginSignUpButton']}"/>
+                            <h:commandButton value="#{msg['loginSignInButton']}"
                                              class="btn btn-lg btn-outline-info btn-block"
                                              action="#{yeeterLoginBean.doLogin()}"/>
                         </div>

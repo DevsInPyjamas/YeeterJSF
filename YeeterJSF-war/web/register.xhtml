@@ -10,8 +10,9 @@
         <link rel="stylesheet" href="assets/css/loginstyle.css"/>
     </h:head>
     <h:body>
+        <f:loadBundle basename="i18n.i18n" var="msg"/>
         <div class="container d-flex justify-content-center">
-            <h1 class="mt-5 justify-content-center">Crear cuenta</h1>
+            <h1 class="mt-5 justify-content-center">#{msg['loginSignUpButton']}</h1>
         </div>
         <div class="body-container">
             <h:form>
@@ -24,7 +25,7 @@
                     
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Username</span>
+                            <span class="input-group-text" id="basic-addon1">#{msg['registerUsername']}</span>
                         </div>
                         <h:inputText styleClass="form-control #{yeeterRegisterBean.usernameError ? 'is-invalid' : ''}" required="true"
                                      value="#{yeeterRegisterBean.username}"/>
@@ -63,7 +64,7 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">Nombre</span>
+                            <span class="input-group-text">#{msg['registerName']}</span>
                         </div>
                     <h:inputText styleClass="form-control" required="true"
                            value="#{yeeterRegisterBean.name}"/>
@@ -71,7 +72,7 @@
                     
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">Apellidos</span>
+                            <span class="input-group-text">#{msg['registerLastame']}</span>
                         </div>
                         <h:inputText class="form-control" required="true" value="#{yeeterRegisterBean.lastname}"/>
                     </div>
@@ -82,7 +83,7 @@
                     
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">Fecha de Nacimiento</span>
+                            <span class="input-group-text">#{msg['registerBirth']}</span>
                         </div>
                         <h:inputText styleClass="form-control" required="true" value="#{yeeterRegisterBean.birth}">
                             <f:convertDateTime pattern="yyyy-MM-dd"/>  
@@ -91,13 +92,13 @@
 
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">Biografía</span>
+                            <span class="input-group-text">#{msg['registerBio']}</span>
                         </div>
                         <h:inputTextarea class="form-control" value="#{yeeterRegisterBean.bio}"></h:inputTextarea>
                     </div>
                     <h:commandButton action="#{yeeterRegisterBean.doRegister()}"
                                      class="btn btn-lg btn-outline-info btn-block mt-5" 
-                                     value="Registrarse"/>
+                                     value="#{msg['registerSignUp']}"/>
                 </div>
             </h:form>
         </div>

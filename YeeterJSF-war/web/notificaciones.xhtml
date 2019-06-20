@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="assets/css/estilos.css"/>
     </h:head>
     <h:body>
+        <f:loadBundle basename="i18n.i18n" var="msg"/>
         <!--
                                     <ui:component rendered="#{yeeterNotificationsBean.message != null}">
                         <div class="alert alert-success">
@@ -26,7 +27,7 @@
                     <nav class="navbar navbar-dark bg-dark mb-5">
                         <span class="navbar-brand">Notificaciones</span>
                         <h:form class="inline-form">
-                            <h:commandButton value="Marcar todas como leídas"
+                            <h:commandButton value="#{msg['notificationsButtonReadAll']}"
                                 styleClass="btn btn-outline-info" 
                                 action="#{yeeterNotificationsBean.doReadAllNotifications()}"
                                 />
