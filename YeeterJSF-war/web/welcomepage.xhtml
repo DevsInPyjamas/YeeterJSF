@@ -28,10 +28,9 @@
                                     </h6>
                                 </div>
                                 <div class="col-md-6 user-pad text-center">
-                                    <h5>Amigos</h5>
+                                    <h5>#{msg['mainFriends']}</h5>
                                     <h6>  #{welcomePageBean.loggedUser.usuarioList1.size()} </h6>
                                 </div>
-
                             </div>
                             </p>
                         </div>
@@ -44,8 +43,16 @@
                             <h:form>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">#{welcomePageBean.distinguir(post)}
-                                    </h5>
+                                    <ui:fragment rendered="#{welcomePageBean.distinguir(post)}">
+                                        <h5 class="card-title">
+                                            #{msg['postGroupText']} #{post.idGrupo.nombre} #{msg['postGroupByText']} @#{post.idAutor.username}
+                                        </h5>
+                                    </ui:fragment>
+                                    <ui:fragment rendered="#{!welcomePageBean.distinguir(post)}">
+                                        <h5 class="card-title">
+                                            @#{post.idAutor.username}
+                                        </h5>
+                                    </ui:fragment>
                                     <p class="card-text"> #{post.contenido}</p>
 
                                     <div class="row">

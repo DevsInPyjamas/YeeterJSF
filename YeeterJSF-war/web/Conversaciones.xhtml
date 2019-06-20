@@ -24,7 +24,7 @@ and open the template in the editor.
                                 </h5>
                                 <p class="card-text"></p>
                                 <h:form>
-                                    <h:commandButton action = "#{chatBean.doCrearChat(user)}" value = "Accedeer a Conversacion" class="btn btn-outline-secondary float-right" />
+                                    <h:commandButton action = "#{chatBean.doCrearChat(user)}" value = "#{msg['messagesConversationButton']}" class="btn btn-outline-secondary float-right" />
                                 </h:form>
                             </div>
                         </div>
@@ -33,7 +33,7 @@ and open the template in the editor.
                 <div class="col-3">
 
                     <h:form>
-                        <h:link outcome="newChat" value = "Nueva Conversacion" class="btn btn-info btn-lg"/>
+                        <h:link outcome="newChat" value = "#{msg['messagesNewConversation']}" class="btn btn-info btn-lg"/>
                     </h:form>
 
                 </div>

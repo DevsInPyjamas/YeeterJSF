@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="assets/css/estilos.css"/>
     </h:head>
     <h:body>
-        <f:loadBundle basename="i18n.i18n" var="msg"/>
         <!--
                                     <ui:component rendered="#{yeeterNotificationsBean.message != null}">
                         <div class="alert alert-success">
@@ -25,7 +24,7 @@
                 <div class="col"></div>
                 <div class="col-9">
                     <nav class="navbar navbar-dark bg-dark mb-5">
-                        <span class="navbar-brand">Notificaciones</span>
+                        <span class="navbar-brand">#{msg['navbarNotifications']}</span>
                         <h:form class="inline-form">
                             <h:commandButton value="#{msg['notificationsButtonReadAll']}"
                                 styleClass="btn btn-outline-info" 
