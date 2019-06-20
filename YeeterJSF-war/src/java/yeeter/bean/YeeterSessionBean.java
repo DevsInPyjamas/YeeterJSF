@@ -27,9 +27,9 @@ public class YeeterSessionBean implements Serializable {
     @EJB
     private UsuarioFacade usuarioFacade;
     
-    private final static Locale SPANISH = new Locale("es");
-    private final static Locale ENGLISH = new Locale("en");
-    private final static Locale CATALAN = new Locale("es", "CA");
+    private final static Locale SPANISH = new Locale("es", "ES");
+    private final static Locale ENGLISH = Locale.ENGLISH;
+    private final static Locale CATALAN = new Locale("ca", "ES");
     
     private Locale currentLocale;
     
