@@ -14,15 +14,16 @@ and open the template in the editor.
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
     <h:body>
+    <f:loadBundle basename="i18n.i18n" var="msg"/>
     <div class="container-fluid">
         <div class="row">
             <div class="col"></div>
             <div class="col-9">
-                <h:link outcome="nuevoGrupo" value="Nuevo Grupo" class="btn btn-outline-info" />
+                <h:link outcome="nuevoGrupo" value="#{msg['groupsNewGroup']}" class="btn btn-outline-info" />
                 <h:form>
                     <h:dataTable value = "#{gruposBean.listaGrupos}" var = "grupo">
                         <h:column>
-                            <f:facet name = "header">GRUPOS</f:facet>
+                            <f:facet name = "header">#{msg['navbarGroups']}</f:facet>
                             <h:commandButton action="#{gruposBean.chooseGroup(grupo)}" value="#{grupo.nombre}" class="list-group-item list-group-item-action btn-outline-dark"/>
                         </h:column>
                     </h:dataTable>

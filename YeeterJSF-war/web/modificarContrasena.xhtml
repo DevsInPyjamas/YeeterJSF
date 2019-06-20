@@ -2,18 +2,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Modificar Contraseña</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
     <h:body>
+        <f:loadBundle basename="i18n.i18n" var="msg"/>
         <div class="container-fluid">
             <div class="row">
                 <div class="col"></div>
                 <div class="col-9">
                     <nav class="navbar navbar-dark bg-dark mb-3">
-                        <span class="navbar-brand">Modificar Contraseña</span>
+                        <span class="navbar-brand">#{msg['profileEditPassword']}</span>
                     </nav>
                     <ui:fragment rendered="#{profileBean.error != null}">
                         <div class="alert alert-warning">
@@ -22,19 +24,19 @@
                     </ui:fragment>
                     <h:form>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"> Contraseña antigua </label>
+                            <label class="col-sm-2 col-form-label"> #{msg['editPassOldPass']} </label>
                             <div class="col-sm-7">
                                 <h:inputSecret value="#{profileBean.oldPass}" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"> Nueva contraseña </label>
+                            <label class="col-sm-2 col-form-label"> #{msg['editPassNewOne1']} </label>
                             <div class="col-sm-7">
                                 <h:inputSecret value="#{profileBean.newPass}" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label"> Repetir nueva contraseña </label>
+                            <label class="col-sm-2 col-form-label"> #{msg['editPassNewOne2']} </label>
                             <div class="col-sm-7">
                                 <h:inputSecret value="#{profileBean.newPassEq}" class="form-control" />
                             </div>
@@ -42,7 +44,7 @@
                         <div class="form-group row">
                             <div class="col-sm-10">
                                 <div class="btn-group" >
-                                    <h:commandButton action="#{profileBean.doGuardarPass()}" value="Modificar contraseña"  class="btn btn-outline-info"/>
+                                    <h:commandButton action="#{profileBean.doGuardarPass()}" value="#{msg['editPassButton']}"  class="btn btn-outline-info"/>
                                 </div>
                             </div>
                         </div>

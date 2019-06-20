@@ -65,14 +65,8 @@ public class WelcomePageBean {
         this.listaPost = listaPost;
     }
 
-    public String distinguir(Post p) {
-        String res;
-         if (p.getIdGrupo() != null){
-             res="Posted in group" + p.getIdGrupo().getNombre()+ "by @" + p.getIdAutor().getUsername();
-         }else{
-             res="@"+ p.getIdAutor().getUsername(); 
-         }
-         return res;
+    public boolean distinguir(Post p) {
+        return p.getIdGrupo() != null;
     }
     
    

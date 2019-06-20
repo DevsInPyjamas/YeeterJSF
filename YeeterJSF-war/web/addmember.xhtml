@@ -3,23 +3,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Yeeter - Añadir Miembro</title>
         <ui:include src="WEB-INF/navbar.xhtml"/>
     </h:head>
     <h:body>
-        
+        <f:loadBundle basename="i18n.i18n" var="msg"/>
         <div class="container-fluid">
             <div class="row">
                 <div class="col"></div>
                 <div class="col-9">
                     <nav class="navbar navbar-dark bg-dark mb-5">
-                        <span class="navbar-brand">Añadir miembro</span>
+                        <span class="navbar-brand">#{msg['membersListButton']}</span>
                     </nav>
-                    <ui:component rendered="#{yeeterAddMemberBean.friendsNotInGroup.size() == 0}">
-                        <div class="alert alert-warning">Todos tus amigos se encuentran ya en este grupo!</div>
-                    </ui:component>
+                    <ui:fragment rendered="#{yeeterAddMemberBean.friendsNotInGroup.size() == 0}">
+                        <div class="alert alert-warning">#{msg['everyFriend']}</div>
+                    </ui:fragment>
                     <ui:repeat var="miembro" value="#{yeeterAddMemberBean.friendsNotInGroup}">
                         <div class="card mt-2 mb-2">
                                 <div class="card-body row align-items-center">
